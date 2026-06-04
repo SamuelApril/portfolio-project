@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-!zpfaqza=y42xv@+^+vqm_-o!pc7aj8zj&_@ha%f=h%!e8_xrc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'samuelapril.qzz.io',
+    'www.samuelapril.qzz.io',
+    '134.209.114.98',
+]
 
 
 # Application definition

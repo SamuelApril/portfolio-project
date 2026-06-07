@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-The Vault | Samuel April
+{% block title %}The Vault | Samuel April{% endblock %}
+
+{% block meta_description %}
+The Samuel April Vault — a premium archive of releases, previews, experiments, exclusive tracks, unreleased records, and Afro-House energy.
 {% endblock %}
 
 {% block css %}
@@ -48,7 +50,7 @@ The Vault | Samuel April
 
         </header>
 
-        <section class="gold-archive-shell">
+        <section class="gold-archive-shell" aria-labelledby="vault-heading">
 
             <div class="gold-shell-top">
 
@@ -57,26 +59,58 @@ The Vault | Samuel April
                     Vault Access Granted
                 </div>
 
-                <span>
+                <span id="vault-heading">
                     Select a record
                 </span>
 
             </div>
 
             <div class="vault-filter-bar" aria-label="Vault filters">
-                <button class="vault-filter active" type="button" data-filter="all">All</button>
-                <button class="vault-filter" type="button" data-filter="featured">Featured</button>
-                <button class="vault-filter" type="button" data-filter="exclusive">Exclusive</button>
-                <button class="vault-filter" type="button" data-filter="unreleased">Unreleased</button>
-                <button class="vault-filter" type="button" data-filter="teaser">Teasers</button>
+                <button class="vault-filter active"
+                        type="button"
+                        data-filter="all"
+                        aria-pressed="true">
+                    All
+                </button>
+
+                <button class="vault-filter"
+                        type="button"
+                        data-filter="featured"
+                        aria-pressed="false">
+                    Featured
+                </button>
+
+                <button class="vault-filter"
+                        type="button"
+                        data-filter="exclusive"
+                        aria-pressed="false">
+                    Exclusive
+                </button>
+
+                <button class="vault-filter"
+                        type="button"
+                        data-filter="unreleased"
+                        aria-pressed="false">
+                    Unreleased
+                </button>
+
+                <button class="vault-filter"
+                        type="button"
+                        data-filter="teaser"
+                        aria-pressed="false">
+                    Teasers
+                </button>
             </div>
 
             <div class="gold-track-grid">
 
                 {% for track in tracks %}
 
-                <article class="gold-track-card"
-
+                <article class="gold-track-card js-track-card"
+                         role="button"
+                         tabindex="0"
+                         aria-label="Open {{ track.title }}"
+                         data-theme="gold"
                          data-title="{{ track.title }}"
                          data-description="{{ track.description }}"
                          data-artwork="{{ track.artwork.url }}"
@@ -88,19 +122,19 @@ The Vault | Samuel April
                          data-featured="{% if track.featured %}true{% else %}false{% endif %}"
                          data-exclusive="{% if track.tag_exclusive %}true{% else %}false{% endif %}"
                          data-unreleased="{% if track.tag_unreleased %}true{% else %}false{% endif %}"
-                         data-teaser="{% if track.tag_teaser %}true{% else %}false{% endif %}"
-
-                         onclick="openTrack(this)">
+                         data-teaser="{% if track.tag_teaser %}true{% else %}false{% endif %}">
 
                     <div class="gold-art-wrap">
 
                         <img src="{{ track.artwork.url }}"
                              class="gold-track-img"
-                             alt="{{ track.title }}">
+                             alt="{{ track.title }}"
+                             loading="lazy"
+                             decoding="async">
 
                         <div class="gold-record-ring"></div>
 
-                        <div class="track-tags">
+                        <div class="track-tags" aria-label="Track tags">
                             {% if track.tag_exclusive %}
                             <span class="track-tag tag-exclusive">Exclusive</span>
                             {% endif %}
@@ -151,6 +185,11 @@ The Vault | Samuel April
 
             </div>
 
+            <div class="vault-empty-state" hidden aria-live="polite">
+                <strong>No tracks here yet.</strong>
+                <span>Once this category has music, it will show here.</span>
+            </div>
+
         </section>
 
     </div>
@@ -158,14 +197,20 @@ The Vault | Samuel April
 </section>
 
 
-<div id="track-modal" class="track-modal">
+<div id="track-modal"
+     class="track-modal"
+     role="dialog"
+     aria-modal="true"
+     aria-hidden="true"
+     aria-labelledby="modal-title">
 
     <div class="modal-glow"></div>
 
     <div class="modal-content">
 
         <button class="close"
-                onclick="closeTrack()"
+                type="button"
+                data-close-track
                 aria-label="Close track">
             ×
         </button>
@@ -188,51 +233,58 @@ The Vault | Samuel April
 
                 <p id="modal-description"></p>
 
-                <div class="audio-wrapper">
+            </div>
 
-                    <div class="player">
+            <div class="audio-wrapper">
 
-                        <button class="play-btn"
-                                type="button"
-                                aria-label="Play or pause">
-                            ▶
-                        </button>
+                <div class="player">
 
-                        <div class="progress-container">
-                            <div class="progress-bar"></div>
-                        </div>
+                    <button class="play-btn"
+                            type="button"
+                            aria-label="Play or pause preview">
+                    </button>
 
-                        <span class="time">
-                            0:00
-                        </span>
+                    <div class="progress-container"
+                         role="slider"
+                         tabindex="0"
+                         aria-label="Seek preview"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         aria-valuenow="0">
+
+                        <div class="progress-bar"></div>
 
                     </div>
 
-                </div>
-
-                <div class="modal-buttons">
-
-                    <a id="spotify-btn"
-                       target="_blank"
-                       rel="noopener"
-                       class="btn">
-                        Spotify
-                    </a>
-
-                    <a id="youtube-btn"
-                       target="_blank"
-                       rel="noopener"
-                       class="btn">
-                        YouTube
-                    </a>
-
-                    <a id="label-btn"
-                       target="_blank"
-                       rel="noopener"
-                       class="btn">
-                    </a>
+                    <span class="time">
+                        0:00
+                    </span>
 
                 </div>
+
+            </div>
+
+            <div class="modal-buttons">
+
+                <a id="spotify-btn"
+                   target="_blank"
+                   rel="noopener"
+                   class="btn is-hidden">
+                    Spotify
+                </a>
+
+                <a id="youtube-btn"
+                   target="_blank"
+                   rel="noopener"
+                   class="btn is-hidden">
+                    YouTube
+                </a>
+
+                <a id="label-btn"
+                   target="_blank"
+                   rel="noopener"
+                   class="btn is-hidden">
+                </a>
 
             </div>
 

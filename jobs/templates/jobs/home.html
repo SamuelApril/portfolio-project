@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-Samuel April
+{% block title %}Samuel April{% endblock %}
+
+{% block meta_description %}
+Samuel April creates high-energy Afro-House, 3-Step records, cinematic sound ideas, and digital experiences built around rhythm, identity, and future-facing creativity.
 {% endblock %}
 
 {% block css %}
@@ -13,15 +15,10 @@ Samuel April
 
 {% block content %}
 
-<!-- =========================
-        HERO / LANDING WORLD
-========================= -->
-
 <section id="top" class="home-hero">
 
     <div class="hero-orb hero-orb-one"></div>
     <div class="hero-orb hero-orb-two"></div>
-
     <div class="hero-grid"></div>
 
     <div class="container hero-container">
@@ -43,7 +40,6 @@ Samuel April
             </p>
 
             <div class="hero-buttons">
-
                 <a href="#sound-vault" class="btn-primary">
                     Explore Music
                 </a>
@@ -51,26 +47,6 @@ Samuel April
                 <a href="{% url 'allblogs' %}" class="btn-secondary">
                     Read Journal
                 </a>
-
-            </div>
-
-            <div class="hero-stats" aria-label="Samuel April creative focus">
-
-                <div>
-                    <strong>3-Step</strong>
-                    <span>Afro-House Energy</span>
-                </div>
-
-                <div>
-                    <strong>Sound</strong>
-                    <span>Design & Scoring</span>
-                </div>
-
-                <div>
-                    <strong>Code</strong>
-                    <span>Digital Experiences</span>
-                </div>
-
             </div>
 
         </div>
@@ -78,13 +54,13 @@ Samuel April
         <div class="hero-visual">
 
             <div class="hero-image-frame">
-
                 <div class="frame-glow"></div>
 
                 <img src="{% static 'images/Social media web.png' %}"
                      class="hero-img"
-                     alt="Samuel April">
-
+                     alt="Samuel April"
+                     fetchpriority="high"
+                     decoding="async">
             </div>
 
             <div class="signal-card signal-card-one">
@@ -109,10 +85,6 @@ Samuel April
 </section>
 
 
-<!-- =========================
-        SOUND VAULT WORLD
-========================= -->
-
 <section id="sound-vault" class="sound-vault-section">
 
     <div class="vault-bg-grid"></div>
@@ -131,8 +103,8 @@ Samuel April
             </h2>
 
             <p>
-                A curated archive of releases, experiments, and high-energy records
-                from the Samuel April world.
+                A curated preview of selected records from the Samuel April world.
+                Use Django admin to decide which tracks appear here.
             </p>
 
         </div>
@@ -154,30 +126,33 @@ Samuel April
 
             <div class="projects-grid">
 
-                {% for track in tracks|slice:":4" %}
+                {% for track in tracks|slice:":2" %}
 
-                <div class="track-card"
-
-                     data-title="{{ track.title }}"
-                     data-description="{{ track.description }}"
-                     data-artwork="{{ track.artwork.url }}"
-                     data-preview="{{ track.preview.url }}"
-                     data-spotify="{{ track.spotify_url }}"
-                     data-youtube="{{ track.youtube_url }}"
-                     data-label="{{ track.record_label }}"
-                     data-label-url="{{ track.record_label_url }}"
-
-                     onclick="openTrack(this)">
+                <article class="track-card js-track-card"
+                         role="button"
+                         tabindex="0"
+                         aria-label="Open {{ track.title }}"
+                         data-theme="cyan"
+                         data-title="{{ track.title }}"
+                         data-description="{{ track.description }}"
+                         data-artwork="{{ track.artwork.url }}"
+                         data-preview="{{ track.preview.url }}"
+                         data-spotify="{{ track.spotify_url }}"
+                         data-youtube="{{ track.youtube_url }}"
+                         data-label="{{ track.record_label }}"
+                         data-label-url="{{ track.record_label_url }}">
 
                     <div class="track-image-wrapper">
 
                         <img src="{{ track.artwork.url }}"
                              class="track-img"
-                             alt="{{ track.title }}">
+                             alt="{{ track.title }}"
+                             loading="lazy"
+                             decoding="async">
 
                         <div class="track-sheen"></div>
 
-                        <div class="track-tags">
+                        <div class="track-tags" aria-label="Track tags">
                             {% if track.tag_exclusive %}
                             <span class="track-tag tag-exclusive">Exclusive</span>
                             {% endif %}
@@ -208,7 +183,7 @@ Samuel April
                         <h3>{{ track.title }}</h3>
 
                         <p class="track-preview-text">
-                            {{ track.description|truncatechars:80 }}
+                            {{ track.description|truncatechars:90 }}
                         </p>
 
                         <div class="track-hint">
@@ -217,13 +192,16 @@ Samuel April
 
                     </div>
 
-                </div>
+                </article>
 
                 {% empty %}
 
                 <div class="empty-vault">
-                    <h3>No tracks yet</h3>
-                    <p>Add tracks in Django admin and they will appear here.</p>
+                    <h3>No homepage tracks selected</h3>
+                    <p>
+                        In Django admin, tick <strong>Show on homepage</strong>
+                        on up to two tracks.
+                    </p>
                 </div>
 
                 {% endfor %}
@@ -242,7 +220,6 @@ Samuel April
 
             </div>
 
-
         </div>
 
     </div>
@@ -250,18 +227,20 @@ Samuel April
 </section>
 
 
-<!-- =========================
-        ONE GLOBAL MODAL
-========================= -->
-
-<div id="track-modal" class="track-modal">
+<div id="track-modal"
+     class="track-modal"
+     role="dialog"
+     aria-modal="true"
+     aria-hidden="true"
+     aria-labelledby="modal-title">
 
     <div class="modal-glow"></div>
 
     <div class="modal-content">
 
         <button class="close"
-                onclick="closeTrack()"
+                type="button"
+                data-close-track
                 aria-label="Close track">
             ×
         </button>
@@ -269,11 +248,9 @@ Samuel April
         <div class="track-layout">
 
             <div class="track-left">
-
                 <img id="modal-artwork"
                      class="modal-artwork"
                      alt="Track artwork">
-
             </div>
 
             <div class="track-right">
@@ -286,53 +263,58 @@ Samuel April
 
                 <p id="modal-description"></p>
 
-                <div class="audio-wrapper">
+            </div>
 
-                    <div class="player">
+            <div class="audio-wrapper">
 
-                        <button class="play-btn"
-                                type="button"
-                                aria-label="Play or pause">
-                            ▶
-                        </button>
+                <div class="player">
 
-                        <div class="progress-container">
+                    <button class="play-btn"
+                            type="button"
+                            aria-label="Play or pause preview">
+                    </button>
 
-                            <div class="progress-bar"></div>
+                    <div class="progress-container"
+                         role="slider"
+                         tabindex="0"
+                         aria-label="Seek preview"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         aria-valuenow="0">
 
-                        </div>
-
-                        <span class="time">
-                            0:00
-                        </span>
+                        <div class="progress-bar"></div>
 
                     </div>
 
-                </div>
-
-                <div class="modal-buttons">
-
-                    <a id="spotify-btn"
-                       target="_blank"
-                       rel="noopener"
-                       class="btn">
-                        Spotify
-                    </a>
-
-                    <a id="youtube-btn"
-                       target="_blank"
-                       rel="noopener"
-                       class="btn">
-                        YouTube
-                    </a>
-
-                    <a id="label-btn"
-                       target="_blank"
-                       rel="noopener"
-                       class="btn">
-                    </a>
+                    <span class="time">
+                        0:00
+                    </span>
 
                 </div>
+
+            </div>
+
+            <div class="modal-buttons">
+
+                <a id="spotify-btn"
+                   target="_blank"
+                   rel="noopener"
+                   class="btn is-hidden">
+                    Spotify
+                </a>
+
+                <a id="youtube-btn"
+                   target="_blank"
+                   rel="noopener"
+                   class="btn is-hidden">
+                    YouTube
+                </a>
+
+                <a id="label-btn"
+                   target="_blank"
+                   rel="noopener"
+                   class="btn is-hidden">
+                </a>
 
             </div>
 

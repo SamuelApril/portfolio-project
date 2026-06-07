@@ -4,40 +4,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>
-        {% block title %}
-        Samuel April
-        {% endblock %}
-    </title>
+    <title>{% block title %}Samuel April{% endblock %}</title>
+
+    <meta name="description"
+          content="{% block meta_description %}Samuel April — Afro-House producer, composer, sound designer, and creative technologist.{% endblock %}">
+
+    <meta property="og:title"
+          content="{% block og_title %}Samuel April{% endblock %}">
+    <meta property="og:description"
+          content="{% block og_description %}Afro-House music, creative technology, sound design, and digital culture from Samuel April.{% endblock %}">
+    <meta property="og:type" content="website">
+
+    <meta name="theme-color" content="#020617">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
-    {% block css %}
-    {% endblock %}
+    {% block css %}{% endblock %}
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body>
 
 <header class="site-header">
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Primary navigation">
         <div class="container nav-container">
 
-            <a href="{% url 'home' %}" class="logo">
+            <a href="{% url 'home' %}" class="logo" aria-label="Samuel April home">
                 Samuel April
             </a>
 
             <div class="nav-links">
                 <a href="{% url 'home' %}">Home</a>
-                <a href="{% url 'allblogs' %}">Blog</a>
                 <a href="/vault/">Vault</a>
+                <a href="{% url 'allblogs' %}">Blog</a>
                 <a href="{% url 'about' %}">About</a>
             </div>
 
@@ -45,23 +55,23 @@
     </nav>
 </header>
 
-<main id="page" class="page">
-    {% block content %}
-    {% endblock %}
+<main id="page" class="page" tabindex="-1">
+    {% block content %}{% endblock %}
 </main>
 
 {% block floating_logo %}
 <div class="floating-logo">
-    <img src="{% static 'images/SA LOGO-18.png' %}" alt="Samuel April Logo">
+    <img src="{% static 'images/SA LOGO-18.png' %}"
+         alt="Samuel April Logo">
 </div>
 {% endblock %}
 
 <footer class="footer">
 
     <img src="{% static 'images/footer-samuel-april.png' %}"
-         class="footer-watermark"
-         alt=""
-         aria-hidden="true">
+             class="footer-watermark"
+             alt=""
+             aria-hidden="true">
 
     <div class="footer-content">
 
@@ -73,12 +83,15 @@
 
         <div class="footer-links">
             <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'about' %}">About</a>
+            <a href="/vault/">Vault</a>
             <a href="{% url 'allblogs' %}">Blog</a>
+            <a href="{% url 'about' %}">About</a>
         </div>
 
         <div class="footer-social">
-            <a href="https://www.instagram.com/samuel__april/" target="_blank" rel="noopener">
+            <a href="https://www.instagram.com/samuel__april/"
+               target="_blank"
+               rel="noopener">
                 Instagram
             </a>
         </div>
@@ -97,10 +110,12 @@
     ↑
 </button>
 
-<script src="{% static 'js/music.js' %}"></script>
-<script src="{% static 'js/vault.js' %}"></script>
-<script src="{% static 'js/vault-filters.js' %}"></script>
-<script src="{% static 'js/transitions.js' %}"></script>
+<script src="{% static 'js/music.js' %}" defer></script>
+<script src="{% static 'js/vault.js' %}" defer></script>
+<script src="{% static 'js/vault-filters.js' %}" defer></script>
+<script src="{% static 'js/transitions.js' %}" defer></script>
+
+{% block scripts %}{% endblock %}
 
 </body>
 </html>

@@ -1,62 +1,73 @@
 // =========================================================
 // VAULT FILTER SYSTEM
-// Save as: portfolio/static/js/vault-filters.js
+// Uses data attributes already printed on each .gold-track-card.
+// No database call. No page reload.
 // =========================================================
 
-document.addEventListener("DOMContentLoaded", () => {
-    const filterButtons = document.querySelectorAll(".vault-filter");
-    const cards = document.querySelectorAll(".gold-track-card");
-    const grid = document.querySelector(".gold-track-grid");
+(() => {
+    document.addEventListener("DOMContentLoaded", () => {
+        const filterButtons = Array.from(document.querySelectorAll(".vault-filter"));
+        const cards = Array.from(document.querySelectorAll(".gold-track-card"));
+        const emptyState = document.querySelector(".vault-empty-state");
 
-    if (!filterButtons.length || !cards.length || !grid) return;
+        if (!filterButtons.length || !cards.length) return;
 
-    const emptyState = document.createElement("div");
-    emptyState.className = "vault-empty-state";
-    emptyState.innerHTML = `
-        <strong>No tracks here yet.</strong>
-        <span>Once this category has music, it will show here.</span>
-    `;
+        function cardMatchesFilter(card, filter) {
+            if (filter === "all") return true;
 
-    grid.insertAdjacentElement("afterend", emptyState);
+            const map = {
+                featured: "featured",
+                exclusive: "exclusive",
+                unreleased: "unreleased",
+                teaser: "teaser",
+            };
 
-    function applyFilter(filter) {
-        let visibleCount = 0;
+            const key = map[filter];
+            if (!key) return true;
 
-        cards.forEach((card) => {
-            let showCard = false;
+            return card.dataset[key] === "true";
+        }
 
-            if (filter === "all") {
-                showCard = true;
-            } else if (filter === "featured") {
-                showCard = card.dataset.featured === "true";
-            } else if (filter === "exclusive") {
-                showCard = card.dataset.exclusive === "true";
-            } else if (filter === "unreleased") {
-                showCard = card.dataset.unreleased === "true";
-            } else if (filter === "teaser") {
-                showCard = card.dataset.teaser === "true";
-            }
+        function setActiveButton(activeButton) {
+            filterButtons.forEach((button) => {
+                const isActive = button === activeButton;
 
-            card.classList.toggle("is-filtered-out", !showCard);
+                button.classList.toggle("active", isActive);
+                button.setAttribute("aria-pressed", isActive ? "true" : "false");
+            });
+        }
 
-            if (showCard) visibleCount += 1;
-        });
+        function applyFilter(filter) {
+            let visibleCount = 0;
 
-        emptyState.classList.toggle("active", visibleCount === 0);
-    }
+            cards.forEach((card) => {
+                const shouldShow = cardMatchesFilter(card, filter);
 
-    filterButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const filter = button.dataset.filter;
+                card.hidden = !shouldShow;
+                card.classList.toggle("is-filtered-out", !shouldShow);
 
-            filterButtons.forEach((btn) => {
-                btn.classList.remove("active");
+                if (shouldShow) {
+                    visibleCount += 1;
+                }
             });
 
-            button.classList.add("active");
-            applyFilter(filter);
-        });
-    });
+            if (emptyState) {
+                emptyState.hidden = visibleCount !== 0;
+            }
+        }
 
-    applyFilter("all");
-});
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const filter = button.dataset.filter || "all";
+
+                setActiveButton(button);
+                applyFilter(filter);
+            });
+        });
+
+        const defaultButton = filterButtons.find((button) => button.classList.contains("active")) || filterButtons[0];
+
+        setActiveButton(defaultButton);
+        applyFilter(defaultButton.dataset.filter || "all");
+    });
+})();

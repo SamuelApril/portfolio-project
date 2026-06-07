@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+The Vault | Samuel April
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/gold-vault.css' %}">
+{% endblock %}
+
+{% block floating_logo %}{% endblock %}
+
+{% block content %}
+
+<section id="top" class="gold-vault-page">
+
+    <div class="gold-vault-noise"></div>
+    <div class="gold-vault-orb gold-vault-orb-one"></div>
+    <div class="gold-vault-orb gold-vault-orb-two"></div>
+
+    <div class="container gold-vault-container">
+
+        <header class="gold-vault-hero">
+
+            <a href="{% url 'home' %}" class="gold-back">
+                ← Back Home
+            </a>
+
+            <p class="gold-kicker">
+                Samuel April Archive
+            </p>
+
+            <h1>
+                The Vault
+            </h1>
+
+            <p class="gold-vault-intro">
+                A premium sound archive of releases, experiments, previews,
+                and records from the Samuel April world.
+            </p>
+
+            <div class="gold-vault-stats">
+                <span>{{ tracks|length }} Records</span>
+                <span>Afro-House</span>
+                <span>3-Step Energy</span>
+            </div>
+
+        </header>
+
+        <section class="gold-archive-shell">
+
+            <div class="gold-shell-top">
+
+                <div>
+                    <span class="gold-status-dot"></span>
+                    Vault Access Granted
+                </div>
+
+                <span>
+                    Select a record
+                </span>
+
+            </div>
+
+            <div class="vault-filter-bar" aria-label="Vault filters">
+                <button class="vault-filter active" type="button" data-filter="all">All</button>
+                <button class="vault-filter" type="button" data-filter="featured">Featured</button>
+                <button class="vault-filter" type="button" data-filter="exclusive">Exclusive</button>
+                <button class="vault-filter" type="button" data-filter="unreleased">Unreleased</button>
+                <button class="vault-filter" type="button" data-filter="teaser">Teasers</button>
+            </div>
+
+            <div class="gold-track-grid">
+
+                {% for track in tracks %}
+
+                <article class="gold-track-card"
+
+                         data-title="{{ track.title }}"
+                         data-description="{{ track.description }}"
+                         data-artwork="{{ track.artwork.url }}"
+                         data-preview="{{ track.preview.url }}"
+                         data-spotify="{{ track.spotify_url }}"
+                         data-youtube="{{ track.youtube_url }}"
+                         data-label="{{ track.record_label }}"
+                         data-label-url="{{ track.record_label_url }}"
+                         data-featured="{% if track.featured %}true{% else %}false{% endif %}"
+                         data-exclusive="{% if track.tag_exclusive %}true{% else %}false{% endif %}"
+                         data-unreleased="{% if track.tag_unreleased %}true{% else %}false{% endif %}"
+                         data-teaser="{% if track.tag_teaser %}true{% else %}false{% endif %}"
+
+                         onclick="openTrack(this)">
+
+                    <div class="gold-art-wrap">
+
+                        <img src="{{ track.artwork.url }}"
+                             class="gold-track-img"
+                             alt="{{ track.title }}">
+
+                        <div class="gold-record-ring"></div>
+
+                        <div class="track-tags">
+                            {% if track.tag_exclusive %}
+                            <span class="track-tag tag-exclusive">Exclusive</span>
+                            {% endif %}
+
+                            {% if track.tag_unreleased %}
+                            <span class="track-tag tag-unreleased">Unreleased</span>
+                            {% endif %}
+
+                            {% if track.tag_teaser %}
+                            <span class="track-tag tag-teaser">Teaser</span>
+                            {% endif %}
+                        </div>
+
+                        {% if track.featured %}
+                        <span class="gold-featured">
+                            Featured
+                        </span>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="gold-track-info">
+
+                        <p>
+                            Archive Record
+                        </p>
+
+                        <h2>
+                            {{ track.title }}
+                        </h2>
+
+                        <span>
+                            Open record →
+                        </span>
+
+                    </div>
+
+                </article>
+
+                {% empty %}
+
+                <div class="gold-empty">
+                    <h2>No tracks yet</h2>
+                    <p>Add tracks in Django admin and they will appear here.</p>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+
+<div id="track-modal" class="track-modal">
+
+    <div class="modal-glow"></div>
+
+    <div class="modal-content">
+
+        <button class="close"
+                onclick="closeTrack()"
+                aria-label="Close track">
+            ×
+        </button>
+
+        <div class="track-layout">
+
+            <div class="track-left">
+                <img id="modal-artwork"
+                     class="modal-artwork"
+                     alt="Track artwork">
+            </div>
+
+            <div class="track-right">
+
+                <p class="modal-label">
+                    Now Exploring
+                </p>
+
+                <h2 id="modal-title"></h2>
+
+                <p id="modal-description"></p>
+
+                <div class="audio-wrapper">
+
+                    <div class="player">
+
+                        <button class="play-btn"
+                                type="button"
+                                aria-label="Play or pause">
+                            ▶
+                        </button>
+
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
+
+                        <span class="time">
+                            0:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-buttons">
+
+                    <a id="spotify-btn"
+                       target="_blank"
+                       rel="noopener"
+                       class="btn">
+                        Spotify
+                    </a>
+
+                    <a id="youtube-btn"
+                       target="_blank"
+                       rel="noopener"
+                       class="btn">
+                        YouTube
+                    </a>
+
+                    <a id="label-btn"
+                       target="_blank"
+                       rel="noopener"
+                       class="btn">
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,2372 @@
+/* =========================================================
+   GOLD VAULT PAGE
+   A different world from the rest of the website
+========================================================= */
+
+.gold-vault-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: clamp(70px, 10vw, 120px) 0;
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(245,158,11,0.20), transparent 36%),
+        radial-gradient(circle at 12% 70%, rgba(180,83,9,0.16), transparent 34%),
+        radial-gradient(circle at 90% 52%, rgba(234,179,8,0.12), transparent 32%),
+        linear-gradient(180deg, #090604 0%, #120b05 42%, #020617 100%);
+}
+
+.gold-vault-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -4;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(245,158,11,0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,158,11,0.12) 1px, transparent 1px);
+    background-size: 82px 82px;
+    opacity: 0.18;
+    mask-image: linear-gradient(to bottom, black, transparent 86%);
+}
+
+.gold-vault-noise {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    opacity: 0.18;
+    background:
+        repeating-radial-gradient(circle at 50% 50%,
+            rgba(255,255,255,0.03) 0 1px,
+            transparent 1px 6px);
+    mix-blend-mode: soft-light;
+}
+
+.gold-vault-orb {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    z-index: -2;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(52px);
+    opacity: 0.33;
+}
+
+.gold-vault-orb-one {
+    left: -160px;
+    top: 10%;
+    background: rgba(245,158,11,0.42);
+}
+
+.gold-vault-orb-two {
+    right: -170px;
+    bottom: 8%;
+    background: rgba(234,179,8,0.28);
+}
+
+.gold-vault-container {
+    position: relative;
+    z-index: 2;
+}
+
+.gold-vault-hero {
+    max-width: 860px;
+    margin: 0 auto 46px;
+    text-align: center;
+}
+
+.gold-back {
+    display: inline-flex;
+    margin-bottom: 24px;
+    padding: 10px 15px;
+    border-radius: 999px;
+    color: #fef3c7;
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.22);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.gold-back:hover {
+    transform: translateX(-4px);
+    background: rgba(245,158,11,0.14);
+    border-color: rgba(245,158,11,0.42);
+}
+
+.gold-kicker {
+    color: #fbbf24;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.gold-vault-hero h1 {
+    color: #fff7ed;
+    font-size: clamp(4rem, 13vw, 11rem);
+    line-height: 0.78;
+    letter-spacing: -0.1em;
+    margin-bottom: 22px;
+    text-shadow:
+        0 0 28px rgba(245,158,11,0.20),
+        0 30px 90px rgba(0,0,0,0.65);
+}
+
+.gold-vault-intro {
+    max-width: 640px;
+    margin: 0 auto;
+    color: #f5d7a1;
+    line-height: 1.8;
+    font-size: 1.02rem;
+}
+
+.gold-vault-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.gold-vault-stats span {
+    padding: 9px 13px;
+    border-radius: 999px;
+    color: #fef3c7;
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.18);
+    font-size: 0.82rem;
+}
+
+/* Archive shell */
+
+.gold-archive-shell {
+    position: relative;
+    padding: clamp(16px, 2.6vw, 30px);
+    border-radius: 38px;
+    background:
+        linear-gradient(180deg, rgba(42,25,8,0.82), rgba(7,5,3,0.76));
+    border: 1px solid rgba(245,158,11,0.20);
+    box-shadow:
+        0 38px 130px rgba(0,0,0,0.55),
+        0 0 80px rgba(245,158,11,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+    backdrop-filter: blur(22px);
+}
+
+.gold-archive-shell::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    background:
+        linear-gradient(135deg,
+            rgba(245,158,11,0.55),
+            transparent 28%,
+            rgba(251,191,36,0.18),
+            transparent 70%);
+    filter: blur(12px);
+    opacity: 0.65;
+}
+
+.gold-shell-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 24px;
+    color: #d6b36b;
+    font-size: 0.86rem;
+}
+
+.gold-shell-top div {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #fff7ed;
+}
+
+.gold-status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fbbf24;
+    box-shadow: 0 0 24px rgba(251,191,36,0.92);
+}
+
+.gold-track-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    gap: 18px;
+}
+
+.gold-track-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 28px;
+    background:
+        linear-gradient(180deg, rgba(38,25,8,0.95), rgba(9,6,3,0.96));
+    border: 1px solid rgba(245,158,11,0.18);
+    box-shadow:
+        0 22px 70px rgba(0,0,0,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+    transition:
+        transform 0.32s ease,
+        border-color 0.32s ease,
+        box-shadow 0.32s ease;
+}
+
+.gold-track-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(251,191,36,0.45);
+    box-shadow:
+        0 32px 96px rgba(0,0,0,0.48),
+        0 0 42px rgba(245,158,11,0.15);
+}
+
+.gold-art-wrap {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #090604;
+}
+
+.gold-track-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+        transform 0.65s ease,
+        filter 0.65s ease;
+}
+
+.gold-track-card:hover .gold-track-img {
+    transform: scale(1.045);
+    filter: brightness(1.08) saturate(1.10);
+}
+
+.gold-record-ring {
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(251,191,36,0.22);
+    box-shadow:
+        inset 0 0 0 10px rgba(0,0,0,0.10),
+        0 0 28px rgba(245,158,11,0.08);
+    opacity: 0;
+    transform: scale(0.94);
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+.gold-track-card:hover .gold-record-ring {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.gold-featured {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
+    padding: 6px 10px;
+    border-radius: 999px;
+    color: #120b05;
+    background: linear-gradient(135deg, #fde68a, #f59e0b);
+    font-size: 0.64rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: 0 12px 32px rgba(245,158,11,0.25);
+}
+
+.gold-track-info {
+    padding: 15px;
+}
+
+.gold-track-info p {
+    color: #fbbf24;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.gold-track-info h2 {
+    color: #fff7ed;
+    font-size: 1.05rem;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    margin-bottom: 12px;
+}
+
+.gold-track-info span {
+    color: #fde68a;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.gold-empty {
+    grid-column: 1 / -1;
+    padding: 50px 22px;
+    text-align: center;
+    border-radius: 26px;
+    color: #fef3c7;
+    background: rgba(245,158,11,0.06);
+    border: 1px dashed rgba(245,158,11,0.22);
+}
+
+/* Re-skin modal/player on Vault page with gold */
+.gold-vault-page ~ .track-modal .progress-bar {
+    background: linear-gradient(90deg, #fde68a, #f59e0b);
+}
+
+.gold-vault-page ~ .track-modal .play-btn {
+    background: #fbbf24;
+}
+
+.gold-vault-page ~ .track-modal .modal-label,
+.gold-vault-page ~ .track-modal .track-right h2 {
+    color: #fff7ed;
+}
+
+.gold-vault-page ~ .track-modal .modal-glow {
+    background:
+        radial-gradient(circle at 50% 45%, rgba(245,158,11,0.22), transparent 52%);
+}
+
+.gold-vault-page ~ .track-modal .modal-content {
+    border-color: rgba(245,158,11,0.18);
+    background:
+        linear-gradient(180deg, rgba(42,25,8,0.98), rgba(7,5,3,0.96));
+}
+
+/* Reliable icon shape */
+.play-btn {
+    position: relative !important;
+    font-size: 0 !important;
+}
+
+.play-btn::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-38%, -50%) !important;
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 9px solid transparent !important;
+    border-bottom: 9px solid transparent !important;
+    border-left: 14px solid #020617 !important;
+}
+
+.play-btn.is-playing::before {
+    width: 14px !important;
+    height: 17px !important;
+    transform: translate(-50%, -50%) !important;
+    border: 0 !important;
+    background:
+        linear-gradient(to right,
+            #020617 0 4px,
+            transparent 4px 10px,
+            #020617 10px 14px) !important;
+}
+
+@media (max-width: 720px) {
+    .gold-vault-page {
+        padding-top: 48px;
+    }
+
+    .gold-shell-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .gold-archive-shell {
+        border-radius: 28px;
+    }
+
+    .gold-track-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .gold-track-info {
+        padding: 13px;
+    }
+
+    .gold-track-info h2 {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .gold-track-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   GOLD VAULT PATCH
+   Add this to the VERY BOTTOM of gold-vault.css
+   Fixes:
+   - Vault modal opening raw/huge on mobile
+   - Vault grid too large
+   - Mobile player icon consistency
+========================================================= */
+
+/* =========================
+   DENSER VAULT GRID
+========================= */
+
+.gold-track-grid {
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)) !important;
+    gap: 14px !important;
+}
+
+.gold-track-card {
+    border-radius: 22px !important;
+}
+
+.gold-track-info {
+    padding: 12px !important;
+}
+
+.gold-track-info p {
+    font-size: 0.58rem !important;
+    margin-bottom: 6px !important;
+}
+
+.gold-track-info h2 {
+    font-size: 0.9rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 8px !important;
+}
+
+.gold-track-info span {
+    font-size: 0.72rem !important;
+}
+
+.gold-featured {
+    top: 9px !important;
+    right: 9px !important;
+    padding: 5px 8px !important;
+    font-size: 0.55rem !important;
+}
+
+/* More compact on desktop, still readable */
+@media (min-width: 980px) {
+    .gold-track-grid {
+        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)) !important;
+    }
+}
+
+/* Two-column mobile vault so scrolling is less painful */
+@media (max-width: 720px) {
+    .gold-track-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+    }
+
+    .gold-track-info h2 {
+        font-size: 0.86rem !important;
+    }
+
+    .gold-track-info p {
+        display: none !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .gold-track-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* =========================
+   FULL MODAL SYSTEM FOR VAULT
+   This is needed because Vault does not load home.css.
+========================= */
+
+body.modal-open {
+    overflow: hidden !important;
+}
+
+.track-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 99999 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    padding: 14px !important;
+    overflow: hidden !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+
+    background: rgba(5, 3, 1, 0.86) !important;
+    backdrop-filter: blur(0px) !important;
+
+    transition:
+        opacity 0.28s ease,
+        visibility 0.28s ease,
+        backdrop-filter 0.28s ease !important;
+}
+
+.track-modal.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    backdrop-filter: blur(18px) !important;
+}
+
+.modal-glow {
+    position: absolute !important;
+    inset: -90px !important;
+    pointer-events: none !important;
+
+    background:
+        radial-gradient(circle at 50% 45%, rgba(245,158,11,0.28), transparent 52%) !important;
+
+    filter: blur(42px) !important;
+    opacity: 0 !important;
+    transform: scale(0.94) !important;
+
+    transition:
+        opacity 0.38s ease,
+        transform 0.38s ease !important;
+}
+
+.track-modal.active .modal-glow {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+.modal-content {
+    position: relative !important;
+
+    width: min(820px, 94vw) !important;
+    max-height: min(620px, calc(100dvh - 28px)) !important;
+
+    overflow: visible !important;
+
+    border-radius: 28px !important;
+    padding: clamp(16px, 2.2vw, 24px) !important;
+
+    background:
+        linear-gradient(180deg, rgba(42,25,8,0.98), rgba(7,5,3,0.96)) !important;
+
+    border: 1px solid rgba(245,158,11,0.22) !important;
+
+    box-shadow:
+        0 34px 110px rgba(0,0,0,0.62),
+        0 0 55px rgba(245,158,11,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.06) !important;
+
+    transform: translateY(18px) scale(0.98) !important;
+    opacity: 0 !important;
+
+    transition:
+        transform 0.34s cubic-bezier(.16,1,.3,1),
+        opacity 0.26s ease !important;
+}
+
+.track-modal.active .modal-content {
+    transform: translateY(0) scale(1) !important;
+    opacity: 1 !important;
+}
+
+.close {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    z-index: 20 !important;
+
+    width: 38px !important;
+    height: 38px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    cursor: pointer !important;
+
+    color: #120b05 !important;
+    background: #fbbf24 !important;
+
+    font-size: 1.55rem !important;
+    line-height: 1 !important;
+
+    box-shadow: 0 14px 34px rgba(245,158,11,0.24) !important;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease !important;
+}
+
+.close:hover {
+    transform: rotate(90deg) !important;
+    background: #fde68a !important;
+}
+
+.track-layout {
+    display: grid !important;
+    grid-template-columns: 220px 1fr !important;
+    gap: clamp(16px, 3vw, 30px) !important;
+    align-items: center !important;
+}
+
+.track-left {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.modal-artwork {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 220px !important;
+    max-height: 220px !important;
+
+    border-radius: 22px !important;
+    object-fit: contain !important;
+
+    box-shadow:
+        0 22px 60px rgba(0,0,0,0.48),
+        0 0 0 1px rgba(245,158,11,0.18) !important;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease !important;
+}
+
+.modal-artwork.playing {
+    animation: goldArtworkBreathing 4s ease-in-out infinite !important;
+
+    filter:
+        drop-shadow(0 0 16px rgba(245,158,11,0.30))
+        drop-shadow(0 0 34px rgba(251,191,36,0.13)) !important;
+}
+
+@keyframes goldArtworkBreathing {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-4px) scale(1.018);
+    }
+}
+
+.track-right {
+    min-width: 0 !important;
+    padding-right: 22px !important;
+}
+
+.modal-label {
+    color: #fbbf24 !important;
+    font-size: 0.7rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 8px !important;
+}
+
+.track-right h2 {
+    color: #fff7ed !important;
+    font-size: clamp(1.8rem, 4vw, 3rem) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.065em !important;
+    margin-bottom: 10px !important;
+}
+
+.track-right > p:not(.modal-label) {
+    color: #f5d7a1 !important;
+    line-height: 1.6 !important;
+
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+.audio-wrapper {
+    margin-top: 18px !important;
+}
+
+.player {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+
+    width: 100% !important;
+
+    padding: 12px !important;
+    border-radius: 18px !important;
+
+    background: rgba(245,158,11,0.08) !important;
+    border: 1px solid rgba(245,158,11,0.18) !important;
+}
+
+.play-btn {
+    position: relative !important;
+
+    flex: 0 0 auto !important;
+
+    width: 43px !important;
+    height: 43px !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    cursor: pointer !important;
+
+    color: transparent !important;
+    background: #fbbf24 !important;
+
+    font-size: 0 !important;
+    font-weight: 900 !important;
+
+    box-shadow: 0 14px 36px rgba(245,158,11,0.24) !important;
+}
+
+.play-btn::before {
+    content: "" !important;
+
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+
+    transform: translate(-38%, -50%) !important;
+
+    width: 0 !important;
+    height: 0 !important;
+
+    border-top: 9px solid transparent !important;
+    border-bottom: 9px solid transparent !important;
+    border-left: 14px solid #120b05 !important;
+}
+
+.play-btn.is-playing::before {
+    width: 14px !important;
+    height: 17px !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    border: 0 !important;
+
+    background:
+        linear-gradient(to right,
+            #120b05 0 4px,
+            transparent 4px 10px,
+            #120b05 10px 14px) !important;
+}
+
+.progress-container {
+    flex: 1 !important;
+
+    height: 8px !important;
+    overflow: hidden !important;
+
+    cursor: pointer !important;
+
+    border-radius: 999px !important;
+    background: rgba(251,191,36,0.18) !important;
+}
+
+.progress-bar {
+    width: 0% !important;
+    height: 100% !important;
+
+    border-radius: inherit !important;
+
+    background:
+        linear-gradient(90deg, #fde68a, #f59e0b) !important;
+
+    transition: width 0.1s linear !important;
+}
+
+.time {
+    flex: 0 0 auto !important;
+
+    min-width: 44px !important;
+
+    color: #f5d7a1 !important;
+    font-size: 0.78rem !important;
+}
+
+.modal-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+
+    margin-top: 18px !important;
+}
+
+.modal-buttons .btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-height: 40px !important;
+
+    padding: 0 14px !important;
+
+    border-radius: 999px !important;
+
+    color: #fff7ed !important;
+    background: rgba(245,158,11,0.08) !important;
+    border: 1px solid rgba(245,158,11,0.18) !important;
+
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease !important;
+}
+
+.modal-buttons .btn:hover {
+    transform: translateY(-2px) !important;
+    border-color: rgba(251,191,36,0.45) !important;
+    background: rgba(245,158,11,0.14) !important;
+}
+
+@media (max-width: 720px) {
+    .track-modal {
+        padding: 10px !important;
+    }
+
+    .modal-content {
+        width: min(390px, 94vw) !important;
+        max-height: calc(100dvh - 20px) !important;
+        padding: 16px !important;
+        border-radius: 24px !important;
+    }
+
+    .track-layout {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        text-align: center !important;
+    }
+
+    .modal-artwork {
+        max-width: 135px !important;
+        max-height: 135px !important;
+    }
+
+    .track-right {
+        padding-right: 0 !important;
+    }
+
+    .track-right h2 {
+        font-size: clamp(1.65rem, 9vw, 2.35rem) !important;
+        margin-bottom: 8px !important;
+    }
+
+    .track-right > p:not(.modal-label) {
+        -webkit-line-clamp: 3 !important;
+        font-size: 0.88rem !important;
+    }
+
+    .audio-wrapper {
+        margin-top: 14px !important;
+    }
+
+    .modal-buttons {
+        justify-content: center !important;
+        margin-top: 14px !important;
+    }
+}
+
+/* =========================================================
+   VAULT OPTIMIZATION PATCH
+   Add this to the VERY BOTTOM of gold-vault.css
+
+   Fixes:
+   - Modal covered by footer
+   - Modal description being clamped like previews
+   - Invisible progress movement
+   - Vault grid scaling for many tracks
+========================================================= */
+
+
+/* =========================
+   VAULT GRID BUILT FOR MANY TRACKS
+========================= */
+
+.gold-archive-shell {
+    overflow: visible !important;
+}
+
+.gold-track-grid {
+    display: grid !important;
+
+    /*
+      This creates as many columns as can fit.
+      Cards stay compact.
+      Rows keep wrapping forever as you add more tracks.
+    */
+    grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)) !important;
+
+    gap: 14px !important;
+    align-items: start !important;
+}
+
+.gold-track-card {
+    min-width: 0 !important;
+    height: 100% !important;
+    border-radius: 20px !important;
+}
+
+.gold-art-wrap {
+    aspect-ratio: 1 / 1 !important;
+}
+
+.gold-track-info {
+    padding: 11px !important;
+}
+
+.gold-track-info p {
+    display: none !important;
+}
+
+.gold-track-info h2 {
+    font-size: 0.88rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 8px !important;
+
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+.gold-track-info span {
+    font-size: 0.72rem !important;
+}
+
+.gold-featured {
+    top: 8px !important;
+    right: 8px !important;
+    padding: 5px 8px !important;
+    font-size: 0.54rem !important;
+}
+
+/* Desktop can fit more columns */
+@media (min-width: 1100px) {
+    .gold-track-grid {
+        grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)) !important;
+    }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .gold-track-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+        gap: 12px !important;
+    }
+}
+
+/* Mobile: still keeps columns instead of huge single cards */
+@media (max-width: 560px) {
+    .gold-track-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+    }
+}
+
+/* Very narrow phones */
+@media (max-width: 330px) {
+    .gold-track-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* =========================
+   MODAL MUST ALWAYS BE ABOVE EVERYTHING
+========================= */
+
+.track-modal {
+    position: fixed !important;
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+
+    z-index: 2147483000 !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    padding: 12px !important;
+    overflow: hidden !important;
+
+    isolation: isolate !important;
+}
+
+.track-modal.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+.modal-content {
+    position: relative !important;
+    z-index: 2147483001 !important;
+
+    width: min(860px, 94vw) !important;
+    max-height: calc(100dvh - 24px) !important;
+
+    /*
+      Important:
+      allow the whole modal content to scroll only if the text is really long,
+      but normal descriptions/player should fit.
+    */
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(251,191,36,0.45) rgba(255,255,255,0.06) !important;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.06) !important;
+    border-radius: 999px !important;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: rgba(251,191,36,0.45) !important;
+    border-radius: 999px !important;
+}
+
+
+/* =========================
+   FULL DESCRIPTION IN MODAL
+========================= */
+
+/*
+  Previous CSS clamped .track-right > p, which affects the modal description.
+  This forces the modal description to show fully.
+*/
+#modal-description {
+    display: block !important;
+    overflow: visible !important;
+
+    -webkit-line-clamp: unset !important;
+    -webkit-box-orient: unset !important;
+
+    max-height: none !important;
+
+    color: #f5d7a1 !important;
+    line-height: 1.65 !important;
+    font-size: 0.95rem !important;
+}
+
+/* But keep spacing controlled */
+.track-right {
+    min-width: 0 !important;
+}
+
+.track-right h2 {
+    margin-bottom: 10px !important;
+}
+
+
+/* =========================
+   PROGRESS BAR VISIBILITY FIX
+========================= */
+
+.player {
+    position: relative !important;
+    z-index: 4 !important;
+}
+
+.progress-container {
+    position: relative !important;
+
+    height: 9px !important;
+
+    background: rgba(255,255,255,0.18) !important;
+    border: 1px solid rgba(251,191,36,0.24) !important;
+
+    overflow: hidden !important;
+    border-radius: 999px !important;
+}
+
+.progress-bar {
+    display: block !important;
+
+    width: 0%;
+    height: 100% !important;
+    min-width: 0 !important;
+
+    border-radius: inherit !important;
+
+    background:
+        linear-gradient(90deg, #fef3c7 0%, #fbbf24 45%, #f59e0b 100%) !important;
+
+    box-shadow:
+        0 0 14px rgba(251,191,36,0.55),
+        0 0 28px rgba(245,158,11,0.25) !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    transform: none !important;
+
+    transition: width 0.1s linear !important;
+}
+
+/* A subtle glow line inside the empty track */
+.progress-container::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(251,191,36,0.18),
+            transparent) !important;
+
+    opacity: 0.65 !important;
+}
+
+
+/* =========================
+   MOBILE MODAL OPTIMIZATION
+========================= */
+
+@media (max-width: 720px) {
+    .track-modal {
+        padding: 10px !important;
+        align-items: center !important;
+        justify-items: center !important;
+    }
+
+    .modal-content {
+        width: min(410px, 94vw) !important;
+        max-height: calc(100dvh - 20px) !important;
+        padding: 14px !important;
+        border-radius: 22px !important;
+    }
+
+    .track-layout {
+        display: grid !important;
+        grid-template-columns: 118px 1fr !important;
+        gap: 12px !important;
+        align-items: start !important;
+        text-align: left !important;
+    }
+
+    .track-left {
+        align-self: start !important;
+        justify-content: flex-start !important;
+    }
+
+    .modal-artwork {
+        max-width: 118px !important;
+        max-height: 118px !important;
+        border-radius: 18px !important;
+    }
+
+    .track-right {
+        padding-right: 30px !important;
+    }
+
+    .modal-label {
+        font-size: 0.62rem !important;
+        margin-bottom: 5px !important;
+    }
+
+    .track-right h2 {
+        font-size: clamp(1.35rem, 7vw, 2rem) !important;
+        margin-bottom: 7px !important;
+    }
+
+    #modal-description {
+        font-size: 0.84rem !important;
+        line-height: 1.5 !important;
+
+        /*
+          On phones, full descriptions can be long.
+          This allows the modal to remain usable while still showing full text
+          through modal scrolling, not cutting the text.
+        */
+        max-height: none !important;
+    }
+
+    .audio-wrapper,
+    .modal-buttons {
+        grid-column: 1 / -1 !important;
+    }
+
+    .audio-wrapper {
+        margin-top: 12px !important;
+    }
+
+    .player {
+        gap: 9px !important;
+        padding: 10px !important;
+        border-radius: 16px !important;
+    }
+
+    .play-btn {
+        width: 39px !important;
+        height: 39px !important;
+    }
+
+    .time {
+        font-size: 0.72rem !important;
+        min-width: 40px !important;
+    }
+
+    .modal-buttons {
+        justify-content: center !important;
+        margin-top: 12px !important;
+    }
+
+    .modal-buttons .btn {
+        min-height: 36px !important;
+        padding: 0 12px !important;
+        font-size: 0.82rem !important;
+    }
+
+    .close {
+        top: 10px !important;
+        right: 10px !important;
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 1.35rem !important;
+    }
+}
+
+/* Small phones: stack if the layout gets too tight */
+@media (max-width: 390px) {
+    .track-layout {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+    }
+
+    .track-left {
+        justify-content: center !important;
+    }
+
+    .modal-artwork {
+        max-width: 130px !important;
+        max-height: 130px !important;
+    }
+
+    .track-right {
+        padding-right: 0 !important;
+        text-align: center !important;
+    }
+}
+
+/* =========================================================
+   FINAL VAULT MODAL FIX
+   Add this to the VERY BOTTOM of gold-vault.css
+
+   Fixes:
+   - Modal covered by footer
+   - Modal too tall on mobile
+   - Full description available without stretching entire modal
+   - Progress bar fill invisible
+========================================================= */
+
+
+/* =========================
+   TRUE VIEWPORT MODAL
+========================= */
+
+body.modal-open {
+    overflow: hidden !important;
+}
+
+.track-modal {
+    position: fixed !important;
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+
+    z-index: 2147483647 !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    padding: 12px !important;
+    overflow: hidden !important;
+
+    isolation: isolate !important;
+
+    background: rgba(5, 3, 1, 0.88) !important;
+    backdrop-filter: blur(18px) !important;
+}
+
+.track-modal.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+.modal-glow {
+    position: absolute !important;
+    inset: -80px !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+
+    background:
+        radial-gradient(circle at 50% 45%, rgba(245,158,11,0.28), transparent 52%) !important;
+
+    filter: blur(38px) !important;
+    opacity: 1 !important;
+}
+
+.modal-content {
+    position: relative !important;
+    z-index: 2 !important;
+
+    width: min(780px, 94vw) !important;
+    max-height: calc(100dvh - 24px) !important;
+
+    overflow: hidden !important;
+
+    border-radius: 28px !important;
+    padding: clamp(15px, 2.2vw, 22px) !important;
+
+    background:
+        linear-gradient(180deg, rgba(42,25,8,0.98), rgba(7,5,3,0.97)) !important;
+
+    border: 1px solid rgba(245,158,11,0.24) !important;
+
+    box-shadow:
+        0 34px 110px rgba(0,0,0,0.66),
+        0 0 55px rgba(245,158,11,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.06) !important;
+}
+
+.close {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+
+    z-index: 20 !important;
+
+    width: 38px !important;
+    height: 38px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    color: #120b05 !important;
+    background: #fbbf24 !important;
+
+    font-size: 1.45rem !important;
+    line-height: 1 !important;
+
+    box-shadow: 0 14px 34px rgba(245,158,11,0.24) !important;
+}
+
+
+/* =========================
+   MODAL LAYOUT - DESKTOP
+========================= */
+
+.track-layout {
+    display: grid !important;
+    grid-template-columns: 210px 1fr !important;
+    gap: 24px !important;
+    align-items: start !important;
+}
+
+.track-left {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.modal-artwork {
+    width: 100% !important;
+    max-width: 210px !important;
+    max-height: 210px !important;
+
+    object-fit: contain !important;
+
+    border-radius: 22px !important;
+
+    box-shadow:
+        0 22px 60px rgba(0,0,0,0.48),
+        0 0 0 1px rgba(245,158,11,0.18) !important;
+}
+
+.track-right {
+    min-width: 0 !important;
+    padding-right: 44px !important;
+}
+
+.modal-label {
+    color: #fbbf24 !important;
+    font-size: 0.68rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 7px !important;
+}
+
+.track-right h2 {
+    color: #fff7ed !important;
+    font-size: clamp(1.8rem, 4vw, 3rem) !important;
+    line-height: 0.96 !important;
+    letter-spacing: -0.06em !important;
+    margin-bottom: 10px !important;
+}
+
+/*
+    Full description is available, but kept inside its own scroll area.
+    This prevents the whole modal becoming extremely tall.
+*/
+#modal-description {
+    display: block !important;
+
+    max-height: 180px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    color: #f5d7a1 !important;
+
+    font-size: 0.94rem !important;
+    line-height: 1.58 !important;
+
+    padding-right: 10px !important;
+
+    -webkit-line-clamp: unset !important;
+    -webkit-box-orient: unset !important;
+
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(251,191,36,0.55) rgba(255,255,255,0.08) !important;
+}
+
+#modal-description::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+#modal-description::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.08) !important;
+    border-radius: 999px !important;
+}
+
+#modal-description::-webkit-scrollbar-thumb {
+    background: rgba(251,191,36,0.55) !important;
+    border-radius: 999px !important;
+}
+
+
+/* =========================
+   PLAYER / PROGRESS BAR
+========================= */
+
+.audio-wrapper {
+    margin-top: 16px !important;
+}
+
+.player {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+
+    width: 100% !important;
+
+    padding: 11px !important;
+    border-radius: 18px !important;
+
+    background: rgba(245,158,11,0.08) !important;
+    border: 1px solid rgba(245,158,11,0.20) !important;
+}
+
+.play-btn {
+    position: relative !important;
+
+    flex: 0 0 auto !important;
+
+    width: 42px !important;
+    height: 42px !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    color: transparent !important;
+    background: #fbbf24 !important;
+
+    font-size: 0 !important;
+
+    box-shadow: 0 14px 36px rgba(245,158,11,0.24) !important;
+}
+
+.play-btn::before {
+    content: "" !important;
+
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+
+    transform: translate(-38%, -50%) !important;
+
+    width: 0 !important;
+    height: 0 !important;
+
+    border-top: 9px solid transparent !important;
+    border-bottom: 9px solid transparent !important;
+    border-left: 14px solid #120b05 !important;
+}
+
+.play-btn.is-playing::before {
+    width: 14px !important;
+    height: 17px !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    border: 0 !important;
+
+    background:
+        linear-gradient(to right,
+            #120b05 0 4px,
+            transparent 4px 10px,
+            #120b05 10px 14px) !important;
+}
+
+.progress-container {
+    position: relative !important;
+
+    flex: 1 !important;
+
+    height: 10px !important;
+
+    overflow: hidden !important;
+
+    border-radius: 999px !important;
+
+    background: rgba(255,255,255,0.20) !important;
+    border: 1px solid rgba(251,191,36,0.28) !important;
+
+    cursor: pointer !important;
+}
+
+.progress-bar {
+    display: block !important;
+
+    height: 100% !important;
+    width: 0%;
+
+    border-radius: inherit !important;
+
+    background:
+        linear-gradient(90deg, #fff7ed 0%, #fbbf24 45%, #f59e0b 100%) !important;
+
+    box-shadow:
+        0 0 14px rgba(251,191,36,0.60),
+        0 0 30px rgba(245,158,11,0.30) !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    transform: none !important;
+}
+
+.time {
+    flex: 0 0 auto !important;
+
+    min-width: 42px !important;
+
+    color: #f5d7a1 !important;
+    font-size: 0.76rem !important;
+}
+
+.modal-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+
+    margin-top: 15px !important;
+}
+
+.modal-buttons .btn {
+    min-height: 38px !important;
+
+    padding: 0 14px !important;
+
+    border-radius: 999px !important;
+
+    color: #fff7ed !important;
+    background: rgba(245,158,11,0.08) !important;
+    border: 1px solid rgba(245,158,11,0.18) !important;
+}
+
+
+/* =========================
+   MOBILE COMPACT MUSIC APP LAYOUT
+========================= */
+
+@media (max-width: 720px) {
+    .track-modal {
+        padding: 10px !important;
+    }
+
+    .modal-content {
+        width: min(410px, 94vw) !important;
+        max-height: calc(100dvh - 20px) !important;
+        padding: 14px !important;
+        border-radius: 22px !important;
+    }
+
+    .track-layout {
+        display: grid !important;
+        grid-template-columns: 108px 1fr !important;
+        gap: 12px !important;
+        align-items: start !important;
+        text-align: left !important;
+    }
+
+    .track-left {
+        justify-content: flex-start !important;
+    }
+
+    .modal-artwork {
+        max-width: 108px !important;
+        max-height: 108px !important;
+        border-radius: 17px !important;
+    }
+
+    .track-right {
+        padding-right: 34px !important;
+    }
+
+    .modal-label {
+        font-size: 0.6rem !important;
+        margin-bottom: 5px !important;
+    }
+
+    .track-right h2 {
+        font-size: clamp(1.35rem, 7vw, 1.9rem) !important;
+        margin-bottom: 7px !important;
+    }
+
+    #modal-description {
+        max-height: 185px !important;
+
+        font-size: 0.83rem !important;
+        line-height: 1.48 !important;
+    }
+
+    .audio-wrapper,
+    .modal-buttons {
+        grid-column: 1 / -1 !important;
+    }
+
+    .audio-wrapper {
+        margin-top: 12px !important;
+    }
+
+    .player {
+        gap: 9px !important;
+        padding: 10px !important;
+        border-radius: 16px !important;
+    }
+
+    .play-btn {
+        width: 39px !important;
+        height: 39px !important;
+    }
+
+    .progress-container {
+        height: 10px !important;
+    }
+
+    .time {
+        min-width: 40px !important;
+        font-size: 0.72rem !important;
+    }
+
+    .modal-buttons {
+        justify-content: center !important;
+        margin-top: 12px !important;
+    }
+
+    .modal-buttons .btn {
+        min-height: 36px !important;
+        padding: 0 12px !important;
+        font-size: 0.82rem !important;
+    }
+
+    .close {
+        top: 10px !important;
+        right: 10px !important;
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 1.3rem !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .track-layout {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+    }
+
+    .track-left {
+        justify-content: center !important;
+    }
+
+    .modal-artwork {
+        max-width: 126px !important;
+        max-height: 126px !important;
+    }
+
+    .track-right {
+        padding-right: 0 !important;
+        text-align: center !important;
+    }
+
+    #modal-description {
+        max-height: 155px !important;
+    }
+}
+
+/* =========================================================
+   VAULT MODAL FULL-WIDTH PLAYER PATCH
+   Add this to the VERY BOTTOM of gold-vault.css
+
+   Fixes:
+   - Player becomes full modal width
+   - Progress bar becomes easier to seek on mobile
+   - Spotify/YouTube buttons are centered
+========================================================= */
+
+
+/* Make player and buttons break out of right column */
+.track-layout .audio-wrapper,
+.track-layout .modal-buttons {
+    grid-column: 1 / -1 !important;
+}
+
+
+/* Full-width player strip */
+.audio-wrapper {
+    width: 100% !important;
+    margin-top: 18px !important;
+}
+
+.player {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 14px !important;
+
+    padding: 14px !important;
+    border-radius: 22px !important;
+
+    background:
+        linear-gradient(135deg, rgba(245,158,11,0.12), rgba(255,255,255,0.045)) !important;
+
+    border: 1px solid rgba(251,191,36,0.24) !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 18px 45px rgba(0,0,0,0.24) !important;
+}
+
+
+/* Bigger seek area */
+.progress-container {
+    flex: 1 !important;
+
+    height: 14px !important;
+
+    border-radius: 999px !important;
+
+    background: rgba(255,255,255,0.22) !important;
+    border: 1px solid rgba(251,191,36,0.30) !important;
+
+    cursor: pointer !important;
+}
+
+.progress-bar {
+    height: 100% !important;
+
+    background:
+        linear-gradient(90deg, #fff7ed 0%, #fbbf24 45%, #f59e0b 100%) !important;
+
+    box-shadow:
+        0 0 14px rgba(251,191,36,0.62),
+        0 0 30px rgba(245,158,11,0.32) !important;
+}
+
+
+/* Center links */
+.modal-buttons {
+    width: 100% !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    gap: 12px !important;
+
+    margin-top: 14px !important;
+}
+
+.modal-buttons .btn {
+    min-width: 110px !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+
+/* Mobile optimization */
+@media (max-width: 720px) {
+
+    .audio-wrapper {
+        margin-top: 14px !important;
+    }
+
+    .player {
+        gap: 10px !important;
+        padding: 12px !important;
+        border-radius: 18px !important;
+    }
+
+    .progress-container {
+        height: 16px !important;
+    }
+
+    .play-btn {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .time {
+        min-width: 42px !important;
+        font-size: 0.74rem !important;
+    }
+
+    .modal-buttons {
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+
+    .modal-buttons .btn {
+        min-width: 104px !important;
+        min-height: 38px !important;
+    }
+}
+
+
+/* Very small phones */
+@media (max-width: 390px) {
+
+    .player {
+        gap: 8px !important;
+        padding: 10px !important;
+    }
+
+    .progress-container {
+        height: 15px !important;
+    }
+
+    .modal-buttons {
+        flex-wrap: wrap !important;
+    }
+
+    .modal-buttons .btn {
+        flex: 1 1 120px !important;
+    }
+}
+
+/* =========================================================
+   VAULT MOBILE MODAL STACK PATCH
+   Add this to the VERY BOTTOM of gold-vault.css
+
+   Goal on phones:
+   - Artwork centered on top
+   - Title/description readable
+   - Player full modal width
+   - Spotify/YouTube centered
+========================================================= */
+
+
+/* =========================
+   DESKTOP/TABLET SAFETY
+========================= */
+
+.track-layout .audio-wrapper,
+.track-layout .modal-buttons {
+    grid-column: 1 / -1 !important;
+}
+
+.audio-wrapper {
+    width: 100% !important;
+}
+
+.player {
+    width: 100% !important;
+}
+
+.modal-buttons {
+    width: 100% !important;
+    justify-content: center !important;
+}
+
+
+/* =========================
+   PHONE LAYOUT
+========================= */
+
+@media (max-width: 720px) {
+
+    .modal-content {
+        width: min(410px, 94vw) !important;
+        max-height: calc(100dvh - 20px) !important;
+
+        padding: 16px !important;
+        border-radius: 24px !important;
+
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    .track-layout {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+
+        gap: 12px !important;
+
+        text-align: center !important;
+        align-items: center !important;
+    }
+
+    .track-left {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        width: 100% !important;
+    }
+
+    .modal-artwork {
+        width: min(170px, 52vw) !important;
+        max-width: 170px !important;
+        max-height: 170px !important;
+
+        margin: 0 auto !important;
+
+        border-radius: 20px !important;
+    }
+
+    .track-right {
+        width: 100% !important;
+
+        padding-right: 0 !important;
+
+        text-align: center !important;
+    }
+
+    .modal-label {
+        margin-top: 2px !important;
+        margin-bottom: 5px !important;
+
+        font-size: 0.62rem !important;
+        letter-spacing: 0.18em !important;
+    }
+
+    .track-right h2 {
+        font-size: clamp(1.9rem, 10vw, 2.6rem) !important;
+        line-height: 0.95 !important;
+
+        margin-bottom: 9px !important;
+    }
+
+    #modal-description {
+        max-height: 145px !important;
+
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+
+        padding: 0 6px !important;
+        margin: 0 auto !important;
+
+        text-align: left !important;
+
+        font-size: 0.86rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .audio-wrapper {
+        grid-column: 1 / -1 !important;
+
+        width: 100% !important;
+
+        margin-top: 8px !important;
+    }
+
+    .player {
+        width: 100% !important;
+
+        display: flex !important;
+        align-items: center !important;
+
+        gap: 10px !important;
+
+        padding: 12px !important;
+
+        border-radius: 18px !important;
+    }
+
+    .play-btn {
+        flex: 0 0 auto !important;
+
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    .progress-container {
+        flex: 1 !important;
+
+        min-width: 0 !important;
+
+        height: 16px !important;
+    }
+
+    .time {
+        flex: 0 0 auto !important;
+
+        min-width: 42px !important;
+
+        font-size: 0.74rem !important;
+    }
+
+    .modal-buttons {
+        grid-column: 1 / -1 !important;
+
+        width: 100% !important;
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        gap: 10px !important;
+
+        margin-top: 10px !important;
+    }
+
+    .modal-buttons .btn {
+        min-width: 112px !important;
+        min-height: 38px !important;
+
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    .close {
+        top: 10px !important;
+        right: 10px !important;
+
+        width: 34px !important;
+        height: 34px !important;
+
+        font-size: 1.25rem !important;
+    }
+}
+
+
+/* =========================
+   SMALL PHONE TUNING
+========================= */
+
+@media (max-width: 390px) {
+
+    .modal-content {
+        width: 94vw !important;
+        padding: 14px !important;
+    }
+
+    .modal-artwork {
+        width: min(145px, 48vw) !important;
+        max-width: 145px !important;
+        max-height: 145px !important;
+    }
+
+    .track-right h2 {
+        font-size: clamp(1.65rem, 9vw, 2.2rem) !important;
+    }
+
+    #modal-description {
+        max-height: 125px !important;
+        font-size: 0.82rem !important;
+    }
+
+    .player {
+        gap: 8px !important;
+        padding: 10px !important;
+    }
+
+    .play-btn {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .progress-container {
+        height: 15px !important;
+    }
+
+    .modal-buttons .btn {
+        flex: 1 1 120px !important;
+    }
+}
+
+.modal-buttons .btn.is-hidden {
+    display: none !important;
+}
+
+/* =========================
+   TRACK STATUS TAGS
+   Gold Vault cards
+========================= */
+
+.gold-art-wrap .track-tags {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    z-index: 8;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+
+    max-width: 70%;
+
+    pointer-events: none;
+}
+
+.gold-art-wrap .track-tag {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: max-content;
+    max-width: 100%;
+
+    padding: 4px 8px;
+
+    border-radius: 999px;
+
+    font-size: 0.52rem;
+    font-weight: 900;
+    line-height: 1;
+
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 10px 24px rgba(0,0,0,0.32),
+        inset 0 1px 0 rgba(255,255,255,0.22);
+}
+
+.gold-art-wrap .track-tag::before {
+    content: "";
+
+    width: 5px;
+    height: 5px;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+    box-shadow: 0 0 12px currentColor;
+}
+
+.gold-art-wrap .tag-exclusive {
+    color: #120b05;
+
+    background:
+        linear-gradient(135deg, #fff7ad, #f59e0b);
+
+    border: 1px solid rgba(251,191,36,0.52);
+}
+
+.gold-art-wrap .tag-unreleased {
+    color: #ffffff;
+
+    background:
+        linear-gradient(135deg, rgba(139,92,246,0.92), rgba(6,182,212,0.78));
+
+    border: 1px solid rgba(255,255,255,0.22);
+}
+
+.gold-art-wrap .tag-teaser {
+    color: #02111f;
+
+    background:
+        linear-gradient(135deg, #22d3ee, #a7f3d0);
+
+    border: 1px solid rgba(34,211,238,0.42);
+}
+
+@media (max-width: 720px) {
+    .gold-art-wrap .track-tags {
+        top: 7px;
+        left: 7px;
+        gap: 4px;
+    }
+
+    .gold-art-wrap .track-tag {
+        padding: 4px 6px;
+        font-size: 0.46rem;
+        letter-spacing: 0.08em;
+    }
+}
+
+/* =========================================================
+   VAULT FILTER SYSTEM
+   Add this to the VERY BOTTOM of gold-vault.css
+========================================================= */
+
+.vault-filter-bar {
+    position: relative;
+    z-index: 5;
+    width: min(920px, 92%);
+    margin: 0 auto 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(245,158,11,0.06));
+    border: 1px solid rgba(251,191,36,0.16);
+    box-shadow: 0 18px 55px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.07);
+    backdrop-filter: blur(16px);
+}
+
+.vault-filter {
+    appearance: none;
+    border: 1px solid rgba(251,191,36,0.16);
+    outline: none;
+    min-height: 38px;
+    padding: 0 15px;
+    border-radius: 999px;
+    color: #f5d7a1;
+    background: rgba(255,255,255,0.045);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vault-filter:hover {
+    transform: translateY(-2px);
+    color: #fff7ed;
+    border-color: rgba(251,191,36,0.36);
+    background: rgba(245,158,11,0.10);
+    box-shadow: 0 12px 28px rgba(245,158,11,0.10);
+}
+
+.vault-filter.active {
+    color: #120b05;
+    background: linear-gradient(135deg, #fff7ad, #f59e0b);
+    border-color: rgba(251,191,36,0.70);
+    box-shadow: 0 16px 38px rgba(245,158,11,0.22), inset 0 1px 0 rgba(255,255,255,0.42);
+}
+
+.gold-track-card.is-filtered-out {
+    display: none !important;
+}
+
+.vault-empty-state {
+    display: none;
+    width: min(720px, 92%);
+    margin: 30px auto 0;
+    padding: 22px;
+    border-radius: 24px;
+    color: #f5d7a1;
+    text-align: center;
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(251,191,36,0.14);
+    box-shadow: 0 18px 55px rgba(0,0,0,0.22);
+}
+
+.vault-empty-state.active {
+    display: block;
+}
+
+.vault-empty-state strong {
+    display: block;
+    color: #fff7ed;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+@media (max-width: 720px) {
+    .vault-filter-bar {
+        width: 92%;
+        margin-bottom: 22px;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        border-radius: 20px;
+        padding: 9px;
+        scrollbar-width: none;
+    }
+
+    .vault-filter-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .vault-filter {
+        flex: 0 0 auto;
+        min-height: 34px;
+        padding: 0 12px;
+        font-size: 0.62rem;
+        letter-spacing: 0.11em;
+    }
+}

@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from music.models import Track
 
-from .models import Job
 
 def home(request):
-    jobs = Job.objects
-    return render(request, 'jobs/home.html', {'jobs': jobs})
+    tracks = Track.objects.filter(
+        show_on_homepage=True
+    ).order_by("homepage_order", "-id")[:2]
+
+    return render(request, "jobs/home.html", {"tracks": tracks})

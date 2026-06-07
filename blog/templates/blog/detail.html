@@ -1,205 +1,511 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
-    <head>
-        {% load static %}
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Astro v5.13.2">
-        <title>{{ blog.title }}</title>
-        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
-        <script src="/docs/5.3/assets/js/color-modes.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-        <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
-        <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-        <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
-        <meta name="theme-color" content="#712cf9">
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                user-select: none
-            }
+{% extends 'base.html' %}
+{% load static %}
 
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size:3.5rem
-                }
-            }
+{% block title %}
+{{ blog.title }} | Samuel April Magazine
+{% endblock %}
 
-            .b-example-divider {
-                width: 100%;
-                height: 3rem;
-                background-color: #0000001a;
-                border: solid rgba(0,0,0,.15);
-                border-width: 1px 0;
-                box-shadow: inset 0 .5em 1.5em #0000001a,inset 0 .125em .5em #00000026
-            }
+{% block floating_logo %}{% endblock %}
 
-            .b-example-vr {
-                flex-shrink: 0;
-                width: 1.5rem;
-                height: 100vh
-            }
+{% block content %}
 
-            .bi {
-                vertical-align: -.125em;
-                fill: currentColor
-            }
+<style>
+/* =========================================================
+   SAMUEL APRIL MAGAZINE READER
+   Embedded to avoid static CSS caching issues.
+========================================================= */
 
-            .nav-scroller {
-                position: relative;
-                z-index: 2;
-                height: 2.75rem;
-                overflow-y: hidden
-            }
+body {
+    background:
+        radial-gradient(circle at 18% 0%, rgba(6,182,212,0.14), transparent 30%),
+        radial-gradient(circle at 86% 8%, rgba(139,92,246,0.11), transparent 32%),
+        linear-gradient(180deg, #020617 0%, #07111f 46%, #020617 100%) !important;
+}
 
-            .nav-scroller .nav {
-                display: flex;
-                flex-wrap: nowrap;
-                padding-bottom: 1rem;
-                margin-top: -1px;
-                overflow-x: auto;
-                text-align: center;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch
-            }
+.magazine-page {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    padding: 56px 0 !important;
+    overflow: hidden !important;
+}
 
-            .btn-bd-primary {
-                --bd-violet-bg: #712cf9;
-                --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-                --bs-btn-font-weight: 600;
-                --bs-btn-color: var(--bs-white);
-                --bs-btn-bg: var(--bd-violet-bg);
-                --bs-btn-border-color: var(--bd-violet-bg);
-                --bs-btn-hover-color: var(--bs-white);
-                --bs-btn-hover-bg: #6528e0;
-                --bs-btn-hover-border-color: #6528e0;
-                --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-                --bs-btn-active-color: var(--bs-btn-hover-color);
-                --bs-btn-active-bg: #5a23c8;
-                --bs-btn-active-border-color: #5a23c8
-            }
+.magazine-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    opacity: 0.10;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 74px 74px;
+}
 
-            .bd-mode-toggle {
-                z-index: 1500
-            }
+.magazine-wrap {
+    width: min(1120px, 92%) !important;
+    margin: 0 auto !important;
+}
 
-            .bd-mode-toggle .bi {
-                width: 1em;
-                height: 1em
-            }
+.magazine-back {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 20px !important;
+    padding: 10px 15px !important;
+    border-radius: 999px !important;
+    color: #dbeafe !important;
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    text-decoration: none !important;
+    backdrop-filter: blur(14px) !important;
+    transition: transform .25s ease, color .25s ease, border-color .25s ease !important;
+}
 
-            .bd-mode-toggle .dropdown-menu .active .bi {
-                display: block!important
-            }
-        </style>
-    </head>
-    <body>
-        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-            <symbol id="check2" viewBox="0 0 16 16">
-                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
-            </symbol>
-            <symbol id="circle-half" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
-            </symbol>
-            <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-                <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
-                <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
-            </symbol>
-            <symbol id="sun-fill" viewBox="0 0 16 16">
-                <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
-            </symbol>
-        </svg>
-        <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-            <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-                <svg class="bi my-1 theme-icon-active" aria-hidden="true">
-                    <use href="#circle-half"></use>
-                </svg>
-                <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-                <li>
-                    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-                        <svg class="bi me-2 opacity-50" aria-hidden="true">
-                            <use href="#sun-fill"></use>
-                        </svg>
-                        Light
+.magazine-back:hover {
+    color: #06b6d4 !important;
+    border-color: rgba(6,182,212,0.34) !important;
+    transform: translateX(-5px) !important;
+}
 
-                        <svg class="bi ms-auto d-none" aria-hidden="true">
-                            <use href="#check2"></use>
-                        </svg>
-                    </button>
-                </li>
-                <li>
-                    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-                        <svg class="bi me-2 opacity-50" aria-hidden="true">
-                            <use href="#moon-stars-fill"></use>
-                        </svg>
-                        Dark
+.magazine-shell {
+    overflow: hidden !important;
+    border-radius: 38px !important;
+    background:
+        linear-gradient(180deg, rgba(15,23,42,0.92), rgba(2,6,23,0.88)) !important;
+    border: 1px solid rgba(255,255,255,0.11) !important;
+    box-shadow:
+        0 38px 130px rgba(0,0,0,0.50),
+        inset 0 1px 0 rgba(255,255,255,0.05) !important;
+    backdrop-filter: blur(22px) !important;
+}
 
-                        <svg class="bi ms-auto d-none" aria-hidden="true">
-                            <use href="#check2"></use>
-                        </svg>
-                    </button>
-                </li>
-                <li>
-                    <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-                        <svg class="bi me-2 opacity-50" aria-hidden="true">
-                            <use href="#circle-half"></use>
-                        </svg>
-                        Auto
+/* Hero like a magazine cover */
+.magazine-cover-hero {
+    position: relative !important;
+    min-height: 520px !important;
+    display: grid !important;
+    grid-template-columns: 0.9fr 1.1fr !important;
+    align-items: center !important;
+    gap: 34px !important;
+    padding: clamp(28px, 5vw, 58px) !important;
+    isolation: isolate !important;
+}
 
-                        <svg class="bi ms-auto d-none" aria-hidden="true">
-                            <use href="#check2"></use>
-                        </svg>
-                    </button>
-                </li>
-            </ul>
-        </div>
-        <header data-bs-theme="dark">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{% url 'home' %}">Samuel April</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav ms-auto">
-                            <a class="nav-link" aria-current="page" href="https://www.instagram.com/samuel__april/">Instagram</a>
-                            <a class="nav-link" href="{% static 'SA LOGO-09' %}">Resume</a>
-                            <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
-                        </div>
-                    </div>
+.magazine-cover-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    background:
+        radial-gradient(circle at 24% 24%, rgba(6,182,212,0.18), transparent 35%),
+        radial-gradient(circle at 78% 22%, rgba(139,92,246,0.13), transparent 36%);
+}
+
+.magazine-cover-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: -4 !important;
+}
+
+.magazine-cover-bg img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    opacity: 0.22 !important;
+    filter: blur(20px) brightness(0.42) saturate(1.1) !important;
+    transform: scale(1.08) !important;
+}
+
+.magazine-image-card {
+    position: relative !important;
+    width: min(430px, 100%) !important;
+    justify-self: center !important;
+    border-radius: 30px !important;
+    overflow: hidden !important;
+    background: #020617 !important;
+    border: 1px solid rgba(255,255,255,0.14) !important;
+    box-shadow:
+        0 34px 100px rgba(0,0,0,0.50),
+        0 0 0 10px rgba(255,255,255,0.025) !important;
+}
+
+.magazine-image-card img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 520px !important;
+    object-fit: contain !important;
+    background: #020617 !important;
+}
+
+.magazine-cover-text {
+    min-width: 0 !important;
+}
+
+.magazine-label {
+    display: inline-flex !important;
+    margin-bottom: 14px !important;
+    color: #06b6d4 !important;
+    font-size: 0.74rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+}
+
+.magazine-title {
+    color: #ffffff !important;
+    font-size: clamp(2.6rem, 7vw, 6.2rem) !important;
+    line-height: 0.88 !important;
+    letter-spacing: -0.085em !important;
+    margin: 0 0 20px !important;
+    text-wrap: balance !important;
+}
+
+.magazine-deck {
+    max-width: 620px !important;
+    color: #b8c5d6 !important;
+    font-size: clamp(1rem, 2vw, 1.16rem) !important;
+    line-height: 1.78 !important;
+    margin-bottom: 24px !important;
+}
+
+.magazine-meta {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+}
+
+.magazine-meta span {
+    padding: 9px 13px !important;
+    border-radius: 999px !important;
+    color: #dbeafe !important;
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    font-size: 0.82rem !important;
+}
+
+/* Article body */
+.magazine-body-shell {
+    display: grid !important;
+    grid-template-columns: 180px minmax(0, 680px) 180px !important;
+    gap: 28px !important;
+    justify-content: center !important;
+    padding: clamp(34px, 6vw, 70px) clamp(20px, 4vw, 48px) !important;
+    border-top: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.magazine-side {
+    align-self: start !important;
+    position: sticky !important;
+    top: 110px !important;
+    padding: 18px !important;
+    border-radius: 22px !important;
+    color: #9fb0c4 !important;
+    background: rgba(255,255,255,0.045) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.magazine-side strong {
+    display: block !important;
+    color: #06b6d4 !important;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 10px !important;
+}
+
+.magazine-side p {
+    color: #aab8ca !important;
+    font-size: 0.86rem !important;
+    line-height: 1.68 !important;
+}
+
+.magazine-body {
+    max-width: 680px !important;
+    margin: 0 auto !important;
+}
+
+.magazine-body p {
+    color: #e2e8f0 !important;
+    font-size: clamp(1.07rem, 1.7vw, 1.19rem) !important;
+    line-height: 2.02 !important;
+    margin: 0 0 1.55em !important;
+    letter-spacing: -0.012em !important;
+}
+
+.magazine-body p:first-child {
+    color: #ffffff !important;
+    font-size: clamp(1.18rem, 2vw, 1.34rem) !important;
+    line-height: 1.9 !important;
+}
+
+.magazine-body p:first-child::first-letter {
+    float: left !important;
+    color: #06b6d4 !important;
+    font-size: 5.4rem !important;
+    line-height: 0.72 !important;
+    padding: 12px 13px 0 0 !important;
+    font-weight: 900 !important;
+    text-shadow:
+        0 0 24px rgba(6,182,212,0.35),
+        0 12px 40px rgba(0,0,0,0.45) !important;
+}
+
+.magazine-body p:nth-of-type(2) {
+    position: relative !important;
+    margin: 36px -24px !important;
+    padding: 30px !important;
+    border-radius: 26px !important;
+    color: #ffffff !important;
+    font-size: clamp(1.14rem, 2vw, 1.32rem) !important;
+    line-height: 1.75 !important;
+    background:
+        linear-gradient(135deg, rgba(6,182,212,0.14), rgba(139,92,246,0.10)) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    box-shadow:
+        inset 4px 0 0 rgba(6,182,212,0.78),
+        0 24px 70px rgba(0,0,0,0.22) !important;
+}
+
+.magazine-body p:nth-of-type(4n) {
+    padding: 24px !important;
+    border-radius: 22px !important;
+    background: rgba(255,255,255,0.045) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.magazine-body strong,
+.magazine-body b {
+    color: #ffffff !important;
+}
+
+.magazine-body em {
+    color: #c7d2fe !important;
+}
+
+.magazine-end-card {
+    width: min(1120px, 92%) !important;
+    margin: 26px auto 0 !important;
+    padding: clamp(26px, 5vw, 44px) !important;
+    border-radius: 32px !important;
+    text-align: center !important;
+    background:
+        linear-gradient(135deg, rgba(6,182,212,0.12), rgba(255,255,255,0.045)) !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    box-shadow: 0 26px 90px rgba(0,0,0,0.30) !important;
+}
+
+.magazine-end-card p:first-child {
+    color: #06b6d4 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.18em !important;
+    font-size: 0.74rem !important;
+    font-weight: 900 !important;
+    margin-bottom: 12px !important;
+}
+
+.magazine-end-card h2 {
+    max-width: 720px !important;
+    margin: 0 auto 12px !important;
+    color: #ffffff !important;
+    font-size: clamp(1.8rem, 4vw, 3rem) !important;
+    letter-spacing: -0.06em !important;
+    line-height: 1.02 !important;
+}
+
+.magazine-end-card p {
+    max-width: 620px !important;
+    margin: 0 auto !important;
+    color: #b8c5d6 !important;
+    line-height: 1.75 !important;
+}
+
+.magazine-button {
+    display: inline-flex !important;
+    margin-top: 24px !important;
+    padding: 13px 18px !important;
+    border-radius: 999px !important;
+    color: #020617 !important;
+    background: #06b6d4 !important;
+    font-weight: 900 !important;
+    text-decoration: none !important;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease !important;
+}
+
+.magazine-button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 18px 44px rgba(6,182,212,0.26) !important;
+}
+
+@media (max-width: 980px) {
+    .magazine-cover-hero {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        min-height: auto !important;
+    }
+
+    .magazine-image-card {
+        width: min(380px, 86%) !important;
+    }
+
+    .magazine-meta {
+        justify-content: center !important;
+    }
+
+    .magazine-body-shell {
+        grid-template-columns: minmax(0, 680px) !important;
+    }
+
+    .magazine-side {
+        position: relative !important;
+        top: auto !important;
+    }
+
+    .magazine-side-right {
+        display: none !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .magazine-page {
+        padding-top: 36px !important;
+    }
+
+    .magazine-wrap {
+        width: min(94%, 1120px) !important;
+    }
+
+    .magazine-shell {
+        border-radius: 26px !important;
+    }
+
+    .magazine-cover-hero {
+        padding: 26px 18px 34px !important;
+    }
+
+    .magazine-title {
+        font-size: clamp(2.45rem, 13vw, 4rem) !important;
+    }
+
+    .magazine-body-shell {
+        padding: 30px 18px !important;
+    }
+
+    .magazine-body p {
+        line-height: 1.9 !important;
+    }
+
+    .magazine-body p:first-child::first-letter {
+        font-size: 4rem !important;
+    }
+
+    .magazine-body p:nth-of-type(2) {
+        margin: 30px 0 !important;
+        padding: 22px !important;
+    }
+}
+</style>
+
+<section id="top" class="magazine-page">
+
+    <div class="magazine-wrap">
+
+        <a href="{% url 'allblogs' %}" class="magazine-back">
+            ← Back to Journal
+        </a>
+
+        <article class="magazine-shell">
+
+            <header class="magazine-cover-hero">
+
+                {% if blog.image %}
+                <div class="magazine-cover-bg">
+                    <img src="{{ blog.image.url }}" alt="">
                 </div>
-            </nav>
-        </header>
-        <main>
-            <div class="container">
 
-            <h1 class="text-center pt-3">{{ blog.title }}</h1>
-            <p class="text-center">{{ blog.pub_date }}</p>
-            <img class="img-fluid, align-center" src="{{ blog.image.url }}"  />
-            <br />
-            <br />
-            <p>{{ blog.body }}</p>
+                <figure class="magazine-image-card">
+                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                </figure>
+                {% endif %}
 
+                <div class="magazine-cover-text">
 
+                    <p class="magazine-label">
+                        Samuel April Magazine
+                    </p>
 
+                    <h1 class="magazine-title">
+                        {{ blog.title }}
+                    </h1>
+
+                    <p class="magazine-deck">
+                        A creative feature from the Samuel April archive — music,
+                        process, rhythm, business, identity, and digital culture.
+                    </p>
+
+                    <div class="magazine-meta">
+                        <span>By Samuel April</span>
+                        <span>{{ blog.pub_date|date:"M d, Y" }}</span>
+                        <span>Creative Journal</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <div class="magazine-body-shell">
+
+                <aside class="magazine-side magazine-side-left">
+                    <strong>Editor’s Note</strong>
+                    <p>
+                        Read this as part article, part archive entry — a record of sound,
+                        process, and the thinking around the work.
+                    </p>
+                </aside>
+
+                <div class="magazine-body">
+                    {{ blog.body|linebreaks }}
+                </div>
+
+                <aside class="magazine-side magazine-side-right">
+                    <strong>Archive</strong>
+                    <p>
+                        Samuel April Journal collects release notes, production ideas,
+                        behind-the-scenes reflections, and creative experiments.
+                    </p>
+                </aside>
 
             </div>
-        </main>
-        <footer class="text-body-secondary py-5">
-            <div class="container text-center">
-                <p class="float-end mb-1">
-                    <a href="#">Float up</a>
-                <p>&copy; Samuel April {% now "Y" %}</p>
-            </div>
-        </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    </body>
-</html>
+
+        </article>
+
+        <section class="magazine-end-card">
+
+            <p>
+                Continue Reading
+            </p>
+
+            <h2>
+                More stories from the creative archive.
+            </h2>
+
+            <p>
+                Return to the Journal feed for more posts, production notes,
+                sound stories, and behind-the-scenes entries.
+            </p>
+
+            <a href="{% url 'allblogs' %}" class="magazine-button">
+                View Journal Feed →
+            </a>
+
+        </section>
+
+    </div>
+
+</section>
+
+{% endblock %}

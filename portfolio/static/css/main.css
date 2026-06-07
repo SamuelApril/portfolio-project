@@ -1,0 +1,556 @@
+/* =========================
+   GLOBAL BASE / FUTURISTIC SYSTEM
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #020617;
+    --bg-soft: #07111f;
+    --surface: #111827;
+    --surface-light: #1f2937;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #06b6d4;
+    --accent-bright: #22d3ee;
+    --violet: #8b5cf6;
+    --warm: #f97316;
+    --glass: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.10);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 0%, rgba(6,182,212,0.08), transparent 34%),
+        radial-gradient(circle at 80% 0%, rgba(139,92,246,0.08), transparent 32%),
+        linear-gradient(180deg, var(--bg) 0%, #030712 100%);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    opacity: 0.055;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 76px 76px;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+.container {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+}
+
+.page {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: pageIn 0.55s ease forwards;
+}
+
+@keyframes pageIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(2,6,23,0.68);
+    border-bottom: 1px solid rgba(255,255,255,0.075);
+    backdrop-filter: blur(18px);
+}
+
+.navbar {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container,
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 1.08rem;
+    letter-spacing: -0.03em;
+}
+
+.logo::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+    box-shadow: 0 0 22px rgba(34,211,238,0.85);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.nav-links a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    color: #b8c5d6;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition:
+        color 0.22s ease,
+        background 0.22s ease,
+        transform 0.22s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+    background: rgba(6,182,212,0.10);
+    transform: translateY(-1px);
+}
+
+/* =========================
+   PAGE TRANSITION OVERLAY
+========================= */
+
+.transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(6,182,212,0.18), transparent 38%),
+        #020617;
+}
+
+.glitch-out {
+    animation: glitchOut 0.45s forwards;
+}
+
+@keyframes glitchOut {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+        filter: contrast(1);
+    }
+
+    22% {
+        opacity: 1;
+        transform: scale(1.018) translateX(2px);
+        filter: contrast(1.6) hue-rotate(18deg);
+    }
+
+    42% {
+        transform: scale(0.992) translateX(-3px);
+        filter: contrast(1.45) hue-rotate(-18deg);
+    }
+
+    68% {
+        transform: scale(1.02) translateX(3px);
+        filter: contrast(2.1) brightness(1.18);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: contrast(1);
+    }
+}
+
+/* =========================
+   OPTIONAL FLOATING LOGO
+   Default: disabled.
+   Pages can override this block if wanted.
+========================= */
+
+.floating-logo {
+    display: none;
+}
+
+/* =========================
+   FOOTER / SIGNATURE
+========================= */
+
+.footer {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(64px, 9vw, 110px) 0 44px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(6,182,212,0.12), transparent 34%),
+        linear-gradient(180deg, #020617 0%, #030712 100%);
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-watermark {
+    position: absolute;
+    left: 50%;
+    top: -25px;
+    transform: translateX(-50%);
+    width: min(1100px, 125%);
+    max-width: none;
+    height: auto;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.footer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.09;
+    background-image:
+        linear-gradient(rgba(6,182,212,0.22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6,182,212,0.22) 1px, transparent 1px);
+    background-size: 70px 70px;
+    mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+
+.footer-content {
+    position: relative;
+    z-index: 2;
+    width: min(980px, 90%);
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 48px);
+    text-align: center;
+    border-radius: 34px;
+    background:
+        linear-gradient(180deg, rgba(15,23,42,0.78), rgba(2,6,23,0.70));
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow:
+        0 28px 90px rgba(0,0,0,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+    backdrop-filter: blur(22px);
+    min-height: 300px;
+}
+
+.footer-content h3 {
+    color: #ffffff;
+    font-size: clamp(2rem, 5vw, 4.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.075em;
+    margin-bottom: 12px;
+}
+
+.footer-content > p {
+    max-width: 620px;
+    margin: 0 auto;
+    color: #aebbd0;
+    line-height: 1.75;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0 18px;
+}
+
+.footer-links a,
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    color: #dbeafe;
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.09);
+    transition:
+        transform 0.22s ease,
+        color 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+    color: #020617;
+    background: var(--accent-bright);
+    border-color: var(--accent-bright);
+    transform: translateY(-3px);
+}
+
+.footer-social {
+    margin-bottom: 24px;
+}
+
+.copyright {
+    color: #64748b !important;
+    font-size: 0.86rem;
+}
+
+/* =========================
+   RESPONSIVE GLOBAL
+========================= */
+
+@media (max-width: 680px) {
+    .navbar {
+        min-height: auto;
+        padding: 16px 0;
+    }
+
+    .nav-container,
+    .navbar .container {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        overflow-x: auto;
+    }
+
+    .nav-links a {
+        padding: 0 12px;
+        font-size: 0.84rem;
+    }
+
+    .footer-content {
+        border-radius: 26px;
+    }
+}
+
+/* =========================
+   ADD THESE TO THE BOTTOM OF main.css
+   Navigation hide + back-to-top
+========================= */
+
+.site-header {
+    transition: transform 0.28s ease, background 0.28s ease;
+}
+
+.site-header.nav-hidden {
+    transform: translateY(-110%);
+}
+
+.back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 8000;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #020617;
+    background: #22d3ee;
+    font-weight: 900;
+    font-size: 1.15rem;
+    box-shadow:
+        0 18px 48px rgba(6,182,212,0.24),
+        0 0 0 1px rgba(255,255,255,0.12);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px) scale(0.92);
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+    box-shadow:
+        0 22px 60px rgba(6,182,212,0.34),
+        0 0 0 1px rgba(255,255,255,0.14);
+    transform: translateY(-3px) scale(1);
+}
+
+@media (max-width: 680px) {
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* =========================================================
+   HARDENING PATCH
+   Add to the VERY BOTTOM of main.css
+========================================================= */
+
+/* Critical modal fix:
+   A transformed parent can trap position: fixed children.
+   The old .page animation used transform. This removes that trap. */
+.page {
+    transform: none !important;
+    animation: pageFadeOnly 0.45s ease forwards !important;
+}
+
+@keyframes pageFadeOnly {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Nav hide-on-scroll support */
+.site-header {
+    transition:
+        transform 0.28s ease,
+        background 0.28s ease,
+        backdrop-filter 0.28s ease;
+    will-change: transform;
+}
+
+.site-header.nav-hidden {
+    transform: translateY(-110%);
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 8000;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #020617;
+    background: #22d3ee;
+    font-weight: 900;
+    font-size: 1.15rem;
+    box-shadow:
+        0 18px 48px rgba(6,182,212,0.24),
+        0 0 0 1px rgba(255,255,255,0.12);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px) scale(0.92);
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+    box-shadow:
+        0 22px 60px rgba(6,182,212,0.34),
+        0 0 0 1px rgba(255,255,255,0.14);
+    transform: translateY(-3px) scale(1);
+}
+
+/* Performance guardrails */
+.hero-orb,
+.vault-aurora,
+.reader-ambient,
+.frame-glow,
+.track-sheen,
+.footer::after,
+.vault-page-glow {
+    will-change: transform, opacity;
+}
+
+/* Reduce expensive visual effects slightly on weaker/smaller screens */
+@media (max-width: 900px) {
+    body::before,
+    .hero-grid,
+    .vault-bg-grid,
+    .vault-page-grid {
+        opacity: 0.08 !important;
+    }
+
+    .hero-orb,
+    .vault-aurora,
+    .frame-glow,
+    .modal-glow {
+        filter: blur(28px) !important;
+    }
+}
+
+/* Respect reduced-motion users and also helps testing sluggishness */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+    }
+}
+
+@media (max-width: 680px) {
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 44px;
+        height: 44px;
+    }
+}

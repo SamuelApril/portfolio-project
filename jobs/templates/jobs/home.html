@@ -1,223 +1,345 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
-    <head>
-        {% load static %}
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Astro v5.13.2">
-        <title>Samuel April</title>
-        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
-        <script src="/docs/5.3/assets/js/color-modes.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-        <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
-        <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-        <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
-        <meta name="theme-color" content="#712cf9">
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                user-select: none
-            }
+{% extends 'base.html' %}
+{% load static %}
 
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size:3.5rem
-                }
-            }
+{% block title %}
+Samuel April
+{% endblock %}
 
-            .b-example-divider {
-                width: 100%;
-                height: 3rem;
-                background-color: #0000001a;
-                border: solid rgba(0,0,0,.15);
-                border-width: 1px 0;
-                box-shadow: inset 0 .5em 1.5em #0000001a,inset 0 .125em .5em #00000026
-            }
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
-            .b-example-vr {
-                flex-shrink: 0;
-                width: 1.5rem;
-                height: 100vh
-            }
+{% block floating_logo %}{% endblock %}
 
-            .bi {
-                vertical-align: -.125em;
-                fill: currentColor
-            }
+{% block content %}
 
-            .nav-scroller {
-                position: relative;
-                z-index: 2;
-                height: 2.75rem;
-                overflow-y: hidden
-            }
+<!-- =========================
+        HERO / LANDING WORLD
+========================= -->
 
-            .nav-scroller .nav {
-                display: flex;
-                flex-wrap: nowrap;
-                padding-bottom: 1rem;
-                margin-top: -1px;
-                overflow-x: auto;
-                text-align: center;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch
-            }
+<section id="top" class="home-hero">
 
-            .btn-bd-primary {
-                --bd-violet-bg: #712cf9;
-                --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-                --bs-btn-font-weight: 600;
-                --bs-btn-color: var(--bs-white);
-                --bs-btn-bg: var(--bd-violet-bg);
-                --bs-btn-border-color: var(--bd-violet-bg);
-                --bs-btn-hover-color: var(--bs-white);
-                --bs-btn-hover-bg: #6528e0;
-                --bs-btn-hover-border-color: #6528e0;
-                --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-                --bs-btn-active-color: var(--bs-btn-hover-color);
-                --bs-btn-active-bg: #5a23c8;
-                --bs-btn-active-border-color: #5a23c8
-            }
+    <div class="hero-orb hero-orb-one"></div>
+    <div class="hero-orb hero-orb-two"></div>
 
-            .bd-mode-toggle {
-                z-index: 1500
-            }
+    <div class="hero-grid"></div>
 
-            .bd-mode-toggle .bi {
-                width: 1em;
-                height: 1em
-            }
+    <div class="container hero-container">
 
-            .bd-mode-toggle .dropdown-menu .active .bi {
-                display: block!important
-            }
-        </style>
-    </head>
-    <body>
-        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-            <symbol id="check2" viewBox="0 0 16 16">
-                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
-            </symbol>
-            <symbol id="circle-half" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
-            </symbol>
-            <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-                <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
-                <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
-            </symbol>
-            <symbol id="sun-fill" viewBox="0 0 16 16">
-                <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
-            </symbol>
-        </svg>
-        <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-            <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-                <svg class="bi my-1 theme-icon-active" aria-hidden="true">
-                    <use href="#circle-half"></use>
-                </svg>
-                <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-                <li>
-                    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-                        <svg class="bi me-2 opacity-50" aria-hidden="true">
-                            <use href="#sun-fill"></use>
-                        </svg>
-                        Light
+        <div class="hero-content">
 
-                        <svg class="bi ms-auto d-none" aria-hidden="true">
-                            <use href="#check2"></use>
-                        </svg>
-                    </button>
-                </li>
-                <li>
-                    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-                        <svg class="bi me-2 opacity-50" aria-hidden="true">
-                            <use href="#moon-stars-fill"></use>
-                        </svg>
-                        Dark
+            <div class="hero-pill">
+                <span></span>
+                Afro-House Producer / Creative Technologist
+            </div>
 
-                        <svg class="bi ms-auto d-none" aria-hidden="true">
-                            <use href="#check2"></use>
-                        </svg>
-                    </button>
-                </li>
-                <li>
-                    <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-                        <svg class="bi me-2 opacity-50" aria-hidden="true">
-                            <use href="#circle-half"></use>
-                        </svg>
-                        Auto
+            <h1>
+                Sound. Motion. Code. Culture.
+            </h1>
 
-                        <svg class="bi ms-auto d-none" aria-hidden="true">
-                            <use href="#check2"></use>
-                        </svg>
-                    </button>
-                </li>
-            </ul>
+            <p class="hero-copy">
+                I create high-energy Afro-house music, cinematic sound ideas,
+                and digital experiences built around rhythm, identity, and future-facing creativity.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#sound-vault" class="btn-primary">
+                    Explore Music
+                </a>
+
+                <a href="{% url 'allblogs' %}" class="btn-secondary">
+                    Read Journal
+                </a>
+
+            </div>
+
+            <div class="hero-stats" aria-label="Samuel April creative focus">
+
+                <div>
+                    <strong>3-Step</strong>
+                    <span>Afro-House Energy</span>
+                </div>
+
+                <div>
+                    <strong>Sound</strong>
+                    <span>Design & Scoring</span>
+                </div>
+
+                <div>
+                    <strong>Code</strong>
+                    <span>Digital Experiences</span>
+                </div>
+
+            </div>
+
         </div>
-        <header data-bs-theme="dark">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{% url 'home' %}">Samuel April</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav ms-auto">
-                            <a class="nav-link" aria-current="page" href="https://www.instagram.com/samuel__april/">Instagram</a>
-                            <a class="nav-link" href="{% static 'SA LOGO-09' %}">Resume</a>
-                            <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
-                        </div>
-                    </div>
+
+        <div class="hero-visual">
+
+            <div class="hero-image-frame">
+
+                <div class="frame-glow"></div>
+
+                <img src="{% static 'images/Social media web.png' %}"
+                     class="hero-img"
+                     alt="Samuel April">
+
+            </div>
+
+            <div class="signal-card signal-card-one">
+                <span>Now Playing</span>
+                <strong>Samuel April Vault</strong>
+            </div>
+
+            <div class="signal-card signal-card-two">
+                <span>Mode</span>
+                <strong>Afro-Futurist</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <a href="#sound-vault" class="scroll-cue" aria-label="Scroll to music archive">
+        <span>Scroll</span>
+        <i></i>
+    </a>
+
+</section>
+
+
+<!-- =========================
+        SOUND VAULT WORLD
+========================= -->
+
+<section id="sound-vault" class="sound-vault-section">
+
+    <div class="vault-bg-grid"></div>
+    <div class="vault-aurora"></div>
+
+    <div class="container vault-container">
+
+        <div class="vault-header">
+
+            <p class="section-kicker">
+                Enter The Vault
+            </p>
+
+            <h2>
+                The Sound Archive
+            </h2>
+
+            <p>
+                A curated archive of releases, experiments, and high-energy records
+                from the Samuel April world.
+            </p>
+
+        </div>
+
+        <div class="vault-shell">
+
+            <div class="vault-shell-top">
+
+                <div>
+                    <span class="vault-status-dot"></span>
+                    Preview Mode
                 </div>
-            </nav>
-        </header>
-        <main>
-            <section class="py-5 text-center container">
-                <div class="row py-lg-5">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                        <h1 class="fw-light">Hello there. I'm Samuel April</h1>
-                        <p class="lead text-body-secondary">A digital creative artist with passion ranging across digital art, music and visual arts</p>
-                        <p>
-                            <a href="mailto:samuelapril08@gmail.com" class="btn btn-primary my-2">Email Me</a>
+
+                <span>
+                    Showing selected records
+                </span>
+
+            </div>
+
+            <div class="projects-grid">
+
+                {% for track in tracks|slice:":4" %}
+
+                <div class="track-card"
+
+                     data-title="{{ track.title }}"
+                     data-description="{{ track.description }}"
+                     data-artwork="{{ track.artwork.url }}"
+                     data-preview="{{ track.preview.url }}"
+                     data-spotify="{{ track.spotify_url }}"
+                     data-youtube="{{ track.youtube_url }}"
+                     data-label="{{ track.record_label }}"
+                     data-label-url="{{ track.record_label_url }}"
+
+                     onclick="openTrack(this)">
+
+                    <div class="track-image-wrapper">
+
+                        <img src="{{ track.artwork.url }}"
+                             class="track-img"
+                             alt="{{ track.title }}">
+
+                        <div class="track-sheen"></div>
+
+                        <div class="track-tags">
+                            {% if track.tag_exclusive %}
+                            <span class="track-tag tag-exclusive">Exclusive</span>
+                            {% endif %}
+
+                            {% if track.tag_unreleased %}
+                            <span class="track-tag tag-unreleased">Unreleased</span>
+                            {% endif %}
+
+                            {% if track.tag_teaser %}
+                            <span class="track-tag tag-teaser">Teaser</span>
+                            {% endif %}
+                        </div>
+
+                        {% if track.featured %}
+                        <span class="vault-badge">
+                            Featured
+                        </span>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="project-content">
+
+                        <p class="track-label">
+                            Vault Record
                         </p>
-                        <img src="{% static 'Social media.jpg' %}" height="300"/>
-                    </div>
-                </div>
-            </section>
-            <div class="album py-5 bg-body-tertiary">
-                <div class="container">
 
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <h3>{{ track.title }}</h3>
 
-                        {% for job in jobs.all %}
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <img class="card-img-top" src="{{ job.image.url }}" />
-                                <div class="card-body">
-                                    <p class="card-text">{{ job.summary }}</p>
-                                </div>
-                            </div>
+                        <p class="track-preview-text">
+                            {{ track.description|truncatechars:80 }}
+                        </p>
+
+                        <div class="track-hint">
+                            Open record →
                         </div>
-                        {% endfor %}
 
                     </div>
+
                 </div>
+
+                {% empty %}
+
+                <div class="empty-vault">
+                    <h3>No tracks yet</h3>
+                    <p>Add tracks in Django admin and they will appear here.</p>
+                </div>
+
+                {% endfor %}
+
             </div>
-        </main>
-        <footer class="text-body-secondary py-5">
-            <div class="container text-center">
-                <p class="float-end mb-1">
-                    <a href="#">Float up</a>
-                <p>copyright &copy; Samuel April {% now "Y" %}</p>
+
+            <div class="vault-cta">
+
+                <p>
+                    Want the full archive?
+                </p>
+
+                <a href="/vault/" class="vault-button">
+                    Open Full Vault →
+                </a>
+
             </div>
-        </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    </body>
-</html>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+        ONE GLOBAL MODAL
+========================= -->
+
+<div id="track-modal" class="track-modal">
+
+    <div class="modal-glow"></div>
+
+    <div class="modal-content">
+
+        <button class="close"
+                onclick="closeTrack()"
+                aria-label="Close track">
+            ×
+        </button>
+
+        <div class="track-layout">
+
+            <div class="track-left">
+
+                <img id="modal-artwork"
+                     class="modal-artwork"
+                     alt="Track artwork">
+
+            </div>
+
+            <div class="track-right">
+
+                <p class="modal-label">
+                    Now Exploring
+                </p>
+
+                <h2 id="modal-title"></h2>
+
+                <p id="modal-description"></p>
+
+                <div class="audio-wrapper">
+
+                    <div class="player">
+
+                        <button class="play-btn"
+                                type="button"
+                                aria-label="Play or pause">
+                            ▶
+                        </button>
+
+                        <div class="progress-container">
+
+                            <div class="progress-bar"></div>
+
+                        </div>
+
+                        <span class="time">
+                            0:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-buttons">
+
+                    <a id="spotify-btn"
+                       target="_blank"
+                       rel="noopener"
+                       class="btn">
+                        Spotify
+                    </a>
+
+                    <a id="youtube-btn"
+                       target="_blank"
+                       rel="noopener"
+                       class="btn">
+                        YouTube
+                    </a>
+
+                    <a id="label-btn"
+                       target="_blank"
+                       rel="noopener"
+                       class="btn">
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

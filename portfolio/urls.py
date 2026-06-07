@@ -4,9 +4,19 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 import jobs.views
+from .import views
+from music.views import vault
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', jobs.views.home, name="home"),
     path('blog/', include ('blog.urls')),
+    path('about/', views.about, name='about'),
+    path("vault/", vault, name="vault"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )

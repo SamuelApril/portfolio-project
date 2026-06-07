@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+About Samuel April
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+    <div class="container about-hero-grid">
+
+        <div class="about-hero-copy">
+            <span class="eyebrow">ABOUT SAMUEL APRIL</span>
+
+            <h1>Afro-house producer, creative builder, and future finance-tech professional.</h1>
+
+            <p>
+                I create high-energy Afro-house and 3-step music shaped by rhythm, atmosphere,
+                and emotion. Beyond music, I am building my path in accounting, technology,
+                digital creativity, and business.
+            </p>
+
+            <div class="about-actions">
+                <a href="mailto:samuelapril08@gmail.com" class="about-btn primary">Work With Me</a>
+                <a href="{% url 'home' %}#music-archive" class="about-btn secondary">Explore Music</a>
+            </div>
+        </div>
+
+        <div class="about-visual">
+            <div class="visual-glow"></div>
+            <div class="profile-card">
+                <img src="{% static 'images/Social media web.png' %}" alt="Samuel April visual identity">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="container about-section">
+    <div class="section-heading">
+        <span class="eyebrow">THE STORY</span>
+        <h2>Built between sound, systems, and ambition.</h2>
+    </div>
+
+    <div class="story-panel">
+        <p>
+            My work sits at the intersection of music, technology, and entrepreneurship. As a house
+            music producer, I focus on creating tracks that carry movement, energy, and identity.
+            As a student and builder, I am also developing skills in accounting, coding, websites,
+            digital systems, and business strategy.
+        </p>
+
+        <p>
+            This portfolio is more than a showcase. It is a living archive of what I am building:
+            music releases, creative experiments, technical projects, and ideas that connect finance,
+            data, media, and culture.
+        </p>
+    </div>
+</section>
+
+<section class="container about-section">
+    <div class="about-cards">
+
+        <article class="about-card">
+            <span class="card-number">01</span>
+            <h3>Music Production</h3>
+            <p>
+                Afro-house, 3-step, sound design, original scores, and rhythm-focused production
+                built for movement and atmosphere.
+            </p>
+        </article>
+
+        <article class="about-card">
+            <span class="card-number">02</span>
+            <h3>Digital Creation</h3>
+            <p>
+                Websites, visuals, branding experiments, coding practice, and creative systems
+                that support the music and business side.
+            </p>
+        </article>
+
+        <article class="about-card">
+            <span class="card-number">03</span>
+            <h3>Finance + Tech</h3>
+            <p>
+                Studying accounting while building interest in data analytics, automation,
+                AI-assisted finance, and business intelligence.
+            </p>
+        </article>
+
+    </div>
+</section>
+
+<section class="container about-section split-section">
+    <div>
+        <span class="eyebrow">CREATIVE DIRECTION</span>
+        <h2>My sound is energetic, cinematic, and rooted in African rhythm.</h2>
+    </div>
+
+    <div class="direction-list">
+        <div class="direction-item">
+            <strong>Energy</strong>
+            <span>Tracks designed to move people physically and emotionally.</span>
+        </div>
+
+        <div class="direction-item">
+            <strong>Identity</strong>
+            <span>A sound inspired by African rhythm, township feeling, and modern electronic texture.</span>
+        </div>
+
+        <div class="direction-item">
+            <strong>Vision</strong>
+            <span>A long-term creative brand connecting music, business, technology, and storytelling.</span>
+        </div>
+    </div>
+</section>
+
+<section class="container about-section timeline-section">
+    <div class="section-heading">
+        <span class="eyebrow">CURRENT FOCUS</span>
+        <h2>What I am building right now.</h2>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <span>Music</span>
+            <p>Expanding the archive with releases, previews, stories, and stronger presentation.</p>
+        </div>
+
+        <div class="timeline-item">
+            <span>Portfolio</span>
+            <p>Building this site into a professional hub for my creative work and digital projects.</p>
+        </div>
+
+        <div class="timeline-item">
+            <span>Career</span>
+            <p>Developing accounting, coding, data, and AI skills for future finance-tech opportunities.</p>
+        </div>
+    </div>
+</section>
+
+<section class="container about-cta">
+    <h2>Let’s build something with sound, feeling, and purpose.</h2>
+    <p>
+        For collaborations, sound design, music work, or creative digital projects, reach out directly.
+    </p>
+    <a href="mailto:samuelapril08@gmail.com" class="about-btn primary">Contact Samuel</a>
+</section>
+
+{% endblock %}

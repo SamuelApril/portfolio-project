@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Page Not Found | Samuel April
+{% endblock %}
+
+{% block meta_description %}
+The page you are looking for could not be found. Return to the Samuel April music world, Vault, journal, or contact page.
+{% endblock %}
+
+{% block og_title %}
+Page Not Found — Samuel April
+{% endblock %}
+
+{% block og_description %}
+The page you are looking for could not be found. Return to the Samuel April music world.
+{% endblock %}
+
+{% block twitter_title %}
+Page Not Found — Samuel April
+{% endblock %}
+
+{% block twitter_description %}
+The page you are looking for could not be found. Return to the Samuel April music world.
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/error-pages.css' %}">
+{% endblock %}
+
+{% block floating_logo %}{% endblock %}
+
+{% block content %}
+
+<section class="error-page">
+    <div class="error-grid"></div>
+    <div class="error-orb error-orb-one"></div>
+    <div class="error-orb error-orb-two"></div>
+
+    <div class="container error-container">
+        <div class="error-card">
+            <p class="error-kicker">Signal Lost</p>
+
+            <h1>404</h1>
+
+            <h2>This page drifted out of the mix.</h2>
+
+            <p>
+                The link may be broken, moved, or never existed.
+                Head back into the Samuel April world and keep exploring.
+            </p>
+
+            <div class="error-actions">
+                <a href="{% url 'home' %}" class="error-primary">Back Home</a>
+                <a href="/vault/" class="error-secondary">Open The Vault</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -10,15 +10,41 @@
     <title>{% block title %}Samuel April{% endblock %}</title>
 
     <meta name="description"
-          content="{% block meta_description %}Samuel April — Afro-House producer, composer, sound designer, and creative technologist.{% endblock %}">
+      content="{% block meta_description %}Samuel April is an Afro-House producer, composer, sound designer, and creative technologist building music and digital experiences around rhythm, identity, and future-facing creativity.{% endblock %}">
 
-    <meta property="og:title"
-          content="{% block og_title %}Samuel April{% endblock %}">
-    <meta property="og:description"
-          content="{% block og_description %}Afro-House music, creative technology, sound design, and digital culture from Samuel April.{% endblock %}">
+    <meta name="author" content="Samuel April">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical"
+          href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Samuel April">
+    <meta property="og:title"
+          content="{% block og_title %}Samuel April — Afro-House Producer & Creative Technologist{% endblock %}">
+    <meta property="og:description"
+          content="{% block og_description %}Explore the Samuel April sound world: Afro-House, 3-Step energy, sound design, creative technology, releases, previews, and journal entries.{% endblock %}">
+    <meta property="og:url"
+          content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta property="og:image"
+          content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/social-preview.png' %}">
+    <meta property="og:image:alt"
+          content="Samuel April music portfolio preview">
 
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title"
+          content="{% block twitter_title %}Samuel April — Afro-House Producer & Creative Technologist{% endblock %}">
+    <meta name="twitter:description"
+          content="{% block twitter_description %}Explore the Samuel April sound world: Afro-House, 3-Step energy, sound design, creative technology, releases, previews, and journal entries.{% endblock %}">
+    <meta name="twitter:image"
+          content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/social-preview.png' %}">
+
+    <!-- Browser / mobile polish -->
     <meta name="theme-color" content="#020617">
+    <link rel="icon" href="{% static 'images/SA LOGO-18.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/SA LOGO-18.png' %}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect"
@@ -49,6 +75,7 @@
                 <a href="/vault/">Vault</a>
                 <a href="{% url 'allblogs' %}">Blog</a>
                 <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'contact' %}">Contact</a>
             </div>
 
         </div>
@@ -86,6 +113,7 @@
             <a href="/vault/">Vault</a>
             <a href="{% url 'allblogs' %}">Blog</a>
             <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
         </div>
 
         <div class="footer-social">

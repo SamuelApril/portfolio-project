@@ -5,6 +5,26 @@
 {{ blog.title }} | Samuel April Magazine
 {% endblock %}
 
+{% block meta_description %}
+{{ blog.body|striptags|truncatechars:155 }}
+{% endblock %}
+
+{% block og_title %}
+{{ blog.title }} — Samuel April Journal
+{% endblock %}
+
+{% block og_description %}
+{{ blog.body|striptags|truncatechars:180 }}
+{% endblock %}
+
+{% block twitter_title %}
+{{ blog.title }} — Samuel April Journal
+{% endblock %}
+
+{% block twitter_description %}
+{{ blog.body|striptags|truncatechars:180 }}
+{% endblock %}
+
 {% block floating_logo %}{% endblock %}
 
 {% block content %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Server Error | Samuel April
+{% endblock %}
+
+{% block meta_description %}
+Something went wrong on the server. Return to the Samuel April home page and try again.
+{% endblock %}
+
+{% block og_title %}
+Server Error — Samuel April
+{% endblock %}
+
+{% block og_description %}
+Something went wrong on the server. Return to the Samuel April home page and try again.
+{% endblock %}
+
+{% block twitter_title %}
+Server Error — Samuel April
+{% endblock %}
+
+{% block twitter_description %}
+Something went wrong on the server. Return to the Samuel April home page and try again.
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/error-pages.css' %}">
+{% endblock %}
+
+{% block floating_logo %}{% endblock %}
+
+{% block content %}
+
+<section class="error-page">
+    <div class="error-grid"></div>
+    <div class="error-orb error-orb-one"></div>
+    <div class="error-orb error-orb-two"></div>
+
+    <div class="container error-container">
+        <div class="error-card">
+            <p class="error-kicker">System Distortion</p>
+
+            <h1>500</h1>
+
+            <h2>Something glitched behind the scenes.</h2>
+
+            <p>
+                The server hit an unexpected problem. Try refreshing,
+                or head back home while the signal stabilizes.
+            </p>
+
+            <div class="error-actions">
+                <a href="{% url 'home' %}" class="error-primary">Back Home</a>
+                <a href="{% url 'contact' %}" class="error-secondary">Contact Samuel</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -66,16 +66,22 @@
     <nav class="navbar" aria-label="Primary navigation">
         <div class="container nav-container">
 
-            <a href="{% url 'home' %}" class="logo" aria-label="Samuel April home">
+            <a href="{% url 'home' %}" class="logo {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-label="Samuel April home">
                 Samuel April
             </a>
 
             <div class="nav-links">
-                <a href="{% url 'home' %}">Home</a>
-                <a href="/vault/">Vault</a>
-                <a href="{% url 'allblogs' %}">Blog</a>
-                <a href="{% url 'about' %}">About</a>
-                <a href="{% url 'contact' %}">Contact</a>
+                <a href="/vault/"
+	                class="nav-link {% if request.resolver_match.url_name == 'vault' %}active{% endif %}">
+	                Vault</a>
+                <a href="{% url 'allblogs' %}"
+					class="nav-link {% if request.resolver_match.url_name == 'allblogs' %}active{% endif %}">Blog</a>
+                <a href="{% url 'about' %}"
+					class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+                >About</a>
+                <a href="{% url 'contact' %}"
+					class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+                >Contact</a>
             </div>
 
         </div>
@@ -86,20 +92,7 @@
     {% block content %}{% endblock %}
 </main>
 
-{% block floating_logo %}
-<div class="floating-logo">
-    <img src="{% static 'images/SA LOGO-18.png' %}"
-         alt="Samuel April Logo">
-</div>
-{% endblock %}
-
 <footer class="footer">
-
-    <img src="{% static 'images/footer-samuel-april.png' %}"
-             class="footer-watermark"
-             alt=""
-             aria-hidden="true">
-
     <div class="footer-content">
 
         <h3>Samuel April</h3>
@@ -109,20 +102,25 @@
         </p>
 
         <div class="footer-links">
-            <a href="{% url 'home' %}">Home</a>
             <a href="/vault/">Vault</a>
             <a href="{% url 'allblogs' %}">Blog</a>
             <a href="{% url 'about' %}">About</a>
             <a href="{% url 'contact' %}">Contact</a>
         </div>
-
-        <div class="footer-social">
-            <a href="https://www.instagram.com/samuel__april/"
+	    <div class="social-links">
+	        <a href="https://www.instagram.com/samuel__april/"
+	            target="_blank"
+	            rel="noopener"
+	            class="gram-pin">
+		        <img src="{% static 'images/logo-instagram.png' %}" alt="Instagram Icon">
+	        </a>
+            <a href="https://wa.me/+27794025969"
                target="_blank"
-               rel="noopener">
-                Instagram
+               rel="noopener noreferrer" aria-label="Chat with Samuel on WhatsApp"
+                class="app-pin">
+	            <img src="{% static 'images/logo-whatsapp.png' %}" alt="WhatsApp Icon">
             </a>
-        </div>
+	    </div>
 
         <p class="copyright">
             © Samuel April {% now "Y" %}

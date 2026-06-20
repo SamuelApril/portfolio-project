@@ -97,14 +97,17 @@
 
 .contact-actions {
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 10px;
     margin-top: 30px;
+    margin-bottom: 80px;
 }
 
 .contact-primary,
-.contact-secondary {
+.contact-secondary,
+.app-btn {
     min-height: 50px;
     display: inline-flex;
     align-items: center;
@@ -122,12 +125,11 @@
 .contact-primary {
     color: #020617;
     background: linear-gradient(135deg, #22d3ee, #06b6d4);
-    box-shadow: 0 18px 42px rgba(6,182,212,0.24);
 }
 
 .contact-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 24px 58px rgba(6,182,212,0.34);
+    box-shadow: 0 5px 20px rgb(6 182 212 / 0.75);
 }
 
 .contact-secondary {
@@ -137,10 +139,33 @@
     backdrop-filter: blur(16px);
 }
 
+.gram-icon {
+    color: #fff;
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+}
+
 .contact-secondary:hover {
     transform: translateY(-3px);
-    border-color: rgba(6,182,212,0.35);
+    border-color: rgb(6 182 212 / 0.87);
     background: rgba(6,182,212,0.08);
+}
+
+.app-btn {
+    color: #ffffff;
+    background-color: #25d165;
+}
+
+.app-icon {
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+}
+
+.app-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgb(36 203 98 / 0.53);
 }
 
 /* Panel */
@@ -292,46 +317,9 @@
     transform: translateX(4px);
 }
 
-/* Direct contact */
-
-.contact-direct {
-    display: grid;
-    grid-template-columns: 1fr 0.86fr;
-    gap: clamp(22px, 4vw, 44px);
-    align-items: stretch;
-    margin-top: 34px;
-}
-
-.contact-direct-copy,
-.contact-direct-card {
-    border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, rgba(15,23,42,0.74), rgba(2,6,23,0.66));
-    border: 1px solid rgba(255,255,255,0.10);
-    box-shadow:
-        0 28px 90px rgba(0,0,0,0.30),
-        inset 0 1px 0 rgba(255,255,255,0.05);
-    backdrop-filter: blur(20px);
-}
-
-.contact-direct-copy {
-    padding: clamp(26px, 5vw, 46px);
-}
-
-.contact-direct-copy h2 {
-    color: #ffffff;
-    font-size: clamp(2.3rem, 5.6vw, 5.4rem);
-    line-height: 0.9;
-    letter-spacing: -0.08em;
-    margin-bottom: 18px;
-}
-
 @media (max-width: 1040px) {
     .contact-card-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .contact-direct {
-        grid-template-columns: 1fr;
     }
 }
 
@@ -358,10 +346,12 @@
     }
 
     .contact-primary,
-    .contact-secondary {
+    .contact-secondary,
+    .app-btn {
         width: 100%;
         min-height: 48px;
     }
+
 
     .contact-panel {
         border-radius: 28px;
@@ -379,22 +369,14 @@
     .contact-card {
         min-height: auto;
     }
-
-    .contact-direct-copy h2 {
-        font-size: clamp(2.2rem, 13vw, 3.8rem);
-    }
-
-    .contact-direct-copy,
-    .contact-direct-card {
-        border-radius: 28px;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .contact-orb,
     .contact-card,
     .contact-primary,
-    .contact-secondary {
+    .contact-secondary,
+    .app-btn {
         animation: none !important;
         transition: none !important;
     }

@@ -21,7 +21,7 @@
     --muted: #94a3b8;
 
     --accent: #06b6d4;
-    --accent-bright: #22d3ee;
+    --accent-bright: #22d1ec;
     --accent-soft: #cffafe;
 
     --violet: #8b5cf6;
@@ -157,8 +157,6 @@ button {
 }
 
 .logo {
-    position: relative;
-
     display: inline-flex;
     align-items: center;
 
@@ -168,16 +166,26 @@ button {
     letter-spacing: -0.03em;
 }
 
+.logo.active {
+    color: #22d1ec;
+}
+
+
 .logo::before {
     content: "";
 
     width: 10px;
     height: 10px;
-    margin-right: 10px;
+    margin-right: 8px;
 
     border-radius: 50%;
-    background: var(--accent-bright);
-    box-shadow: 0 0 22px rgba(34,211,238,0.85);
+    background: #ffffff;
+    box-shadow: 0 0 22px rgb(34 211 238);
+}
+
+.logo::before.active {
+    background: #22d1ec;
+    box-shadow: 0 0 22px rgb(34 207 234);
 }
 
 .nav-links {
@@ -190,6 +198,13 @@ button {
 
     background: rgba(255,255,255,0.045);
     border: 1px solid rgba(255,255,255,0.08);
+}
+
+.nav-link.active {
+    color: #fff;
+    background: rgb(199 176 201 / 0.27);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgb(107 233 255 / 0.37);
 }
 
 .nav-links a {
@@ -267,14 +282,6 @@ button {
         transform: scale(1);
         filter: contrast(1);
     }
-}
-
-/* =========================================================
-   OPTIONAL FLOATING LOGO
-========================================================= */
-
-.floating-logo {
-    display: none;
 }
 
 /* =========================================================
@@ -852,26 +859,6 @@ body[data-track-theme="gold"] .track-modal {
     mask-image: linear-gradient(to bottom, black, transparent 75%);
 }
 
-.footer-watermark {
-    position: absolute;
-
-    left: 50%;
-    top: 0px;
-
-    z-index: 1;
-
-    transform: translateX(-50%);
-
-    width: min(1000px, 100%);
-    max-width: none;
-    height: auto;
-
-    opacity: 0.12;
-
-    pointer-events: none;
-    user-select: none;
-}
-
 .footer-content {
     position: relative;
     z-index: 2;
@@ -913,7 +900,7 @@ body[data-track-theme="gold"] .track-modal {
 }
 
 .footer-links,
-.footer-social {
+.social-links {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -923,7 +910,7 @@ body[data-track-theme="gold"] .track-modal {
 }
 
 .footer-links a,
-.footer-social a {
+.social-links a {
     min-height: 38px;
     display: inline-flex;
     align-items: center;
@@ -945,8 +932,25 @@ body[data-track-theme="gold"] .track-modal {
         background 0.22s ease;
 }
 
+.social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.gram-pin{
+    width: 50px;
+}
+
+.app-pin {
+    width: 50px;
+}
+
 .footer-links a:hover,
-.footer-social a:hover {
+.social-links a:hover {
     transform: translateY(-2px);
     border-color: rgba(6,182,212,0.34);
     background: rgba(6,182,212,0.10);

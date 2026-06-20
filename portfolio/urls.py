@@ -15,8 +15,8 @@ from jobs.views import robots_txt, sitemap_xml
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', jobs.views.home, name="home"),
-    path('blog/', include ('blog.urls')),
-    path('about/', views.about, name='about'),
+    path("blog/", include ("blog.urls")),
+    path("about/", views.about, name="about"),
     path("vault/", vault, name="vault"),
     path("contact/", contact, name="contact"),
     path("robots.txt", robots_txt, name="robots_txt"),
